@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Badge from "../components/Badge.astro";
+import Experience from "../components/Experience.astro";
+import Linkedin from "../icons/Linkedin.astro";
+import Github from "../icons/Github.astro";
+import CodeIcon from "../icons/CodeIcon.astro";
+import Briefcase from "../icons/Briefcase.astro";
+import Gmail from "../icons/Gmail.astro";
+import SocialPill from "../components/SocialPill.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<Layout title="Kevin Rodríguez - Desarrollador y Programador Web">
+  <main>
+    <section class="w-full lg:w-[740px] mx-auto py-16">
+      <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4">
+        Lorem Sodecia <div class="flex justify-center items-center">
+          <Badge>Estado disponible</Badge>
+        </div>
+      </h1>
+      <h2 class="text-2xl text-wrap opacity-80">
+        +Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum
+        numquam, doloribus distinctio laboriosam repudiandae aliquid
+        exercitationem earum, dolores reprehenderit, nostrum nemo eaque placeat
+        illo natus doloremque perspiciatis ut eum odio!
+      </h2>
+
+      <nav class="flex gap-x-2  mt-5">
+        <SocialPill href="https://www.linkedin.com">
+          <Linkedin class="size-6" />
+          LinkedIn
+        </SocialPill>
+        <SocialPill href="https://www.github.com">
+          <Github class="size-6" />
+          Github
+        </SocialPill>
+        <SocialPill href="mailto:kevinrodriguezdev@gmail.com">
+          <Gmail class="size-6" />
+          kevinrodriguezdev@gmail.com
+        </SocialPill>
+      </nav>
+
+	  
+    </section>
+
+	<section class="w-full lg:w-[740px] mx-auto">
+		<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
+			<Briefcase class="size-8" />
+			Experiencia Laboral</h2>
+		<Experience />
+	</section>
+	<section class="w-full lg:w-[740px] mx-auto">
+		<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
+			<CodeIcon class="size-8" />
+			Proyectos</h2>
+		<Projects />
+	</section>
+  </main>
+</Layout>
