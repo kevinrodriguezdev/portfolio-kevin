@@ -9,22 +9,24 @@ import Briefcase from "../icons/Briefcase.astro";
 import Gmail from "../icons/Gmail.astro";
 import SocialPill from "../components/SocialPill.astro";
 import Projects from "../components/Projects.astro";
+import CV from "../icons/CV.astro";
 ---
 
 <Layout title="Kevin Rodríguez - Desarrollador y Programador Web">
-  <main>
+  <main class="px-4">
     <section class="w-full lg:w-[740px] mx-auto py-16">
-      <h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-4">
+      <h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
         Kevin Rodríguez <div class="flex justify-center items-center">
           <Badge>Buscando nuevas oportunidades</Badge>
         </div>
       </h1>
-      <h2 class="text-2xl text-wrap opacity-80">
+      <h2 class=" text-xl lg:text-2xl text-wrap opacity-80 max-w-[
+      700px]">
         Desarrollador frontend con +3 años de experiencia creando soluciones para uno de los 
         sectores más dificiles, la automoción. De Valencia, España.
       </h2>
 
-      <nav class="flex gap-x-2  mt-5">
+      <nav class="flex gap-x-4 mt-8 flex-wrap gap-4">
         <SocialPill href="https://www.linkedin.com">
           <Linkedin class="size-6" />
           LinkedIn
@@ -37,6 +39,10 @@ import Projects from "../components/Projects.astro";
           <Gmail class="size-6" />
           kevinrodriguezdev@gmail.com
         </SocialPill>
+        <SocialPill href="mailto:kevinrodriguezdev@gmail.com">
+          <CV class="size-6" />
+          CV
+        </SocialPill>
       </nav>
 
 	  
@@ -46,13 +52,13 @@ import Projects from "../components/Projects.astro";
 		<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
 			<Briefcase class="size-8" />
 			Experiencia Laboral</h2>
-		<Experience />
+		<Experience id="experiencia" />
 	</section>
 	<section class="w-full lg:w-[740px] mx-auto">
 		<h2 class="text-2xl font-semibold mb-6 flex gap-x-2 items-center">
 			<CodeIcon class="size-8" />
 			Proyectos</h2>
-		<Projects />
+		<Projects  id="proyectos" />
 	</section>
   </main>
 </Layout>
