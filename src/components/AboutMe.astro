@@ -1,28 +1,77 @@
 ---
- const personalImageAlt = "Kevin Rodríguez"
+import LaravelIcon from "@/components/icons/Laravel.astro"
+import PhpIcon from "@/components/icons/Php.astro"
+import MySqlIcon from "@/components/icons/MySql.astro"
+import VueIcon from "@/components/icons/Vue.astro"
+import ReactIcon from "@/components/icons/ReactIcon.astro"
+import TailwindIcon from "@/components/icons/Tailwind.astro"
+import DockerIcon from "@/components/icons/Docker.astro"
+import GitIcon from "@/components/icons/Git.astro"
+
+const personalImageAlt = "Kevin Rodríguez"
+
+const t = {
+  es: {
+    p1: "Ingeniero de software con una obsesión por los sistemas bien diseñados. +5 años convirtiendo ideas complejas en código limpio y mantenible.",
+    p2: "Laravel y PHP son mi terreno natural, pero no me quedo ahí — Vue, React y todo lo que haga falta para construir el mejor producto posible.",
+    p3: "Actualmente lidero el backend en Degestec Games. Arquitectura, estándares, code reviews — lo que hace falta para que el equipo entregue su mejor trabajo.",
+  },
+  en: {
+    p1: "Software engineer obsessed with well-designed systems. 5+ years turning complex ideas into clean, maintainable code.",
+    p2: "Laravel and PHP are my home turf, but I don't stop there — Vue, React, and whatever it takes to build the best possible product.",
+    p3: "Currently leading backend at Degestec Games. Architecture, standards, code reviews — whatever it takes for the team to ship their best work.",
+  },
+}
+
+const stack = [
+  { name: "Laravel", Icon: LaravelIcon },
+  { name: "PHP", Icon: PhpIcon },
+  { name: "MySQL", Icon: MySqlIcon },
+  { name: "Vue", Icon: VueIcon },
+  { name: "React", Icon: ReactIcon },
+  { name: "Tailwind", Icon: TailwindIcon },
+  { name: "Docker", Icon: DockerIcon },
+  { name: "Git", Icon: GitIcon },
+]
 ---
 
-<article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
-  >
-    <p>
-      ¡Hola! Soy Kevin un <strong>Desarrollador FullStack</strong> apasionado por crear soluciones digitales innovadoras.
-    </p>
+<article class="space-y-12" data-reveal>
+  <div class="flex flex-col items-center justify-center gap-10 md:flex-row">
+    <div class="[&>p]:mb-4 text-pretty order-2 md:order-1 text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed">
+      <p>
+        <span data-i18n-es={t.es.p1} data-i18n-en={t.en.p1} class="i18n-text">{t.es.p1}</span>
+      </p>
+      <p>
+        <span data-i18n-es={t.es.p2} data-i18n-en={t.en.p2} class="i18n-text">{t.es.p2}</span>
+      </p>
+      <p>
+        <span data-i18n-es={t.es.p3} data-i18n-en={t.en.p3} class="i18n-text">{t.es.p3}</span>
+      </p>
+    </div>
 
-    <p>
-      Cuento con <strong>+3 años de experiencia</strong> diseñando y desarrollando aplicaciones web dinámicas y escalables,
-       desde la interfaz de usuario hasta la lógica de servidor. 
-       Trabajo con tecnologías como <strong>PHP, JavaScript, HTML y CSS</strong>, actualmente estoy ampliando mis habilidades aprendiendo 
-       <strong>React, Tailwind y Astro</strong>.
-      Busco oportunidades en proyectos que me desafíen a seguir aprendiendo y mejorando mis habilidades, mientras aporto valor con mi conocimiento y creatividad.
-    </p>
-
-<p>Fuera del trabajo, disfruto correr y sobretodo el mundo de los videojuegos. 👾 </p>
-
-    
+    <img
+      width="250"
+      height="250"
+      src="/kevindev.jpg"
+      alt={personalImageAlt}
+      class="order-1 object-cover w-48 h-48 md:w-56 md:h-56 md:order-2 rounded-3xl
+             shadow-lg ring-1 ring-apple-gray-200 dark:ring-apple-gray-700"
+      style="object-position: 50% 50%"
+    />
   </div>
 
-  <img width="200" height="200" src="/kevindev.jpg" alt={personalImageAlt} class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20 " style="object-position: 50% 50%">
-
+  <!-- Tech stack grid — WWDC style -->
+  <div data-reveal data-reveal-delay="1">
+    <h3 class="text-xs font-semibold uppercase tracking-widest text-apple-gray-400 dark:text-apple-gray-600 mb-4">Stack</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {stack.map((tech) => (
+        <div class="flex items-center gap-2.5 px-4 py-3 rounded-xl
+                    bg-apple-gray-50 dark:bg-apple-gray-800/40
+                    border border-apple-gray-200/30 dark:border-apple-gray-800/60">
+          <tech.Icon class="size-5" />
+          <span class="text-sm font-medium text-apple-gray-600 dark:text-apple-gray-400">{tech.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
 </article>

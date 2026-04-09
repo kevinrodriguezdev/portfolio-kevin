@@ -1,54 +1,45 @@
 ---
-const personalImageAlt = "Kevin Rodríguez"
 import Badge from "@/components/Badge.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
-import ProfileCheckIcon from "@/components/icons/Briefcase.astro"
+import GitHubIcon from "@/components/icons/GitHub.astro"
 ---
 
-<div class="max-w-xl">
-  <div class="flex gap-4 mb-4">
-    <img
-      class="rounded-full shadow-lg size-16"
-      src="/kevindev.jpg"
-      alt={personalImageAlt}
-    />
-    <a
-      href="https://linkedin.com/in/kevinrodriguezdev"
-      target="_blank"
-      rel="noopener"
-      class="flex items-center transition md:justify-center md:hover:scale-105"
-    >
-      <Badge>Trabajando actualmente</Badge>
-    </a>
+<div class="max-w-3xl">
+  <div class="hero-animate hero-animate-delay-1 mb-6">
+    <Badge>
+      <span data-i18n-es="Backend Lead en Degestec" data-i18n-en="Backend Lead at Degestec" class="i18n-text">Backend Lead en Degestec</span>
+    </Badge>
   </div>
-  <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
-  >
-    Kevin Rodríguez
+
+  <h1 class="hero-animate hero-animate-delay-2 tracking-tight text-apple-gray-800 dark:text-white leading-[1.05]">
+    <span class="block text-5xl md:text-7xl font-bold">Kevin Rodríguez</span>
+    <span class="block mt-2 text-2xl md:text-3xl font-semibold bg-gradient-to-r from-apple-blue to-cyan-400 dark:from-apple-blue-dark dark:to-cyan-300 bg-clip-text text-transparent">
+      Backend Lead · Laravel & PHP
+    </span>
   </h1>
-  <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
-  >
-    +3 años de experiencia. <strong
-      >Desarrollador FullStack</strong
-    > de Valencia, España 🇪🇸. Especializado en el desarrollo de aplicaciones web
-    únicas.
+
+  <p class="hero-animate hero-animate-delay-3 mt-8 text-lg md:text-xl text-apple-gray-500 dark:text-apple-gray-400 max-w-2xl leading-relaxed">
+    <span
+      data-i18n-es="+5 años creando software que escala. Arquitectura limpia, equipos que funcionan, productos que importan."
+      data-i18n-en="5+ years building software that scales. Clean architecture, teams that work, products that matter."
+      class="i18n-text"
+    >+5 años creando software que escala. Arquitectura limpia, equipos que funcionan, productos que importan.</span>
   </p>
-  <nav class="flex flex-wrap gap-4 mt-8">
+
+  <nav class="hero-animate hero-animate-delay-4 flex flex-wrap gap-3 mt-10">
     <SocialPill href="mailto:kevinrodriguezdev@gmail.com">
       <MailIcon class="size-4" />
-      Contáctame
+      <span data-i18n-es="Contacto" data-i18n-en="Contact" class="i18n-text">Contacto</span>
     </SocialPill>
     <SocialPill href="https://linkedin.com/in/kevinrodriguezdev">
       <LinkedInIcon class="size-4" />
       LinkedIn
     </SocialPill>
-
-    <SocialPill href="https://kevin-minimalist-portfolio.vercel.app">
-      <ProfileCheckIcon class="size-4" />
-      CV
+    <SocialPill href="https://github.com/kevinrodriguezdev">
+      <GitHubIcon class="size-4" />
+      GitHub
     </SocialPill>
   </nav>
 </div>

@@ -1,5 +1,5 @@
 ---
-import "@fontsource-variable/onest";
+import "@fontsource-variable/inter";
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -14,7 +14,7 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" id="html-root">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -25,31 +25,42 @@ const { description, title } = Astro.props;
     <ViewTransitions />
   </head>
 
-  <body class="relative text-black dark:text-white">
-    <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-    >
-    </div>
-
-
-    </div>
+  <body class="relative text-apple-gray-800 dark:text-white bg-white dark:bg-apple-gray-950 antialiased">
     <Header />
     <slot />
     <Footer />
+
+    <!-- Scroll Reveal Observer -->
+    <script is:inline>
+      function initScrollReveal() {
+        const els = document.querySelectorAll('[data-reveal]');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        els.forEach((el) => observer.observe(el));
+      }
+      initScrollReveal();
+      document.addEventListener('astro:after-swap', initScrollReveal);
+    </script>
+
     <style is:global>
       :root {
         color-scheme: light dark;
       }
 
       html {
-        font-family: "Onest Variable", system-ui, sans-serif;
+        font-family: "Inter Variable", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       body {
-        color: rgba(17, 17, 17, 0.9);
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -60,59 +71,62 @@ const { description, title } = Astro.props;
         html {
           scroll-behavior: auto;
         }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          color: rgba(255, 255, 255, 0.9);
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
         }
       }
 
-      #header-nav {
-        animation: blur linear both 0.5s;
-        animation-timeline: scroll();
-        animation-range: 0 500px;
+      /* Scroll reveal animations */
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      @keyframes blur {
+      [data-reveal].revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      [data-reveal="scale"] {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      [data-reveal="scale"].revealed {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Stagger delays for list items */
+      [data-reveal-delay="1"] { transition-delay: 0.1s; }
+      [data-reveal-delay="2"] { transition-delay: 0.2s; }
+      [data-reveal-delay="3"] { transition-delay: 0.3s; }
+      [data-reveal-delay="4"] { transition-delay: 0.4s; }
+
+      /* Hero entrance animations */
+      @keyframes heroFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
         to {
-          backdrop-filter: blur(20px);
-          border-width: 1px;
-          border-color: rgba(0, 0, 0);
-          padding: 0.25rem 0.75rem;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          background-color: rgb(229, 229, 229);
-          border-radius: 9999px;
+          opacity: 1;
+          transform: translateY(0);
         }
       }
 
-      @media (prefers-color-scheme: dark) {
-        @keyframes blur {
-          from {
-            border: 0px;
-          }
-          to {
-            box-shadow:
-              0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-              0px 0px 0 1px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            border-width: 1px;
-            border-color: rgba(0, 0, 0);
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 9999px;
-          }
-        }
+      .hero-animate {
+        animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
       }
+
+      .hero-animate-delay-1 { animation-delay: 0.1s; }
+      .hero-animate-delay-2 { animation-delay: 0.25s; }
+      .hero-animate-delay-3 { animation-delay: 0.4s; }
+      .hero-animate-delay-4 { animation-delay: 0.55s; }
     </style>
   </body>
 </html>

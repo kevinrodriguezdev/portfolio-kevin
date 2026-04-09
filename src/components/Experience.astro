@@ -1,36 +1,64 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
+
 const EXPERIENCE = [
   {
-    date: "Enero 2025 - Actualidad",
-    title: "Desarrollador FullStack",
+    date: { es: "2025 — Actualidad", en: "2025 — Present" },
+    title: { es: "Backend Lead", en: "Backend Lead" },
     company: "Degestec Games",
-    description: "Mantenimiento y creación de nuevas herramientas para falicitar las tareas de gestión interna. Utilizando tecnologías como Laravel, Vue y  MySQL."
+    description: {
+      es: "Liderazgo técnico del equipo backend. Diseño de arquitectura de servicios, code reviews y desarrollo de herramientas internas de gestión con Laravel, Vue y MySQL. Definición de estándares de código y buenas prácticas del equipo.",
+      en: "Technical leadership of the backend team. Service architecture design, code reviews and development of internal management tools with Laravel, Vue and MySQL. Definition of coding standards and team best practices.",
+    },
+    tags: ["Laravel", "Vue", "MySQL", "Architecture"],
+    current: true,
   },
   {
-    date: "Mayo 2021 - Septiembre 2024",
-    title: "Desarrollador FullStack",
+    date: { es: "2021 — 2024", en: "2021 — 2024" },
+    title: { es: "Desarrollador FullStack", en: "FullStack Developer" },
     company: "Sodecia Automotive",
-    description:
-      "Mantenimiento y creación de nuevas aplicaciones en la web interna. Donde desarrollé soluciones para los usuarios de planta y digitalicé procesos. Utilizando las últimas tecnologías",
+    description: {
+      es: "Desarrollo y mantenimiento de aplicaciones web internas. Digitalización de procesos de planta, creación de soluciones para usuarios internos y desarrollo de nuevas funcionalidades con tecnologías modernas.",
+      en: "Development and maintenance of internal web applications. Digitalization of plant processes, creation of solutions for internal users and development of new features with modern technologies.",
+    },
+    tags: ["PHP", "JavaScript", "SQL Server"],
     link: "https://www.linkedin.com/in/kevinrodriguezdev/",
   },
   {
-    date: "Enero 2021 - Marzo 2021",
-    title: "Desarrollador Frontend",
+    date: { es: "2021", en: "2021" },
+    title: { es: "Desarrollador Frontend", en: "Frontend Developer" },
     company: "La Cruz Azul",
-    description:
-      "Practicas en las que aprendí a trabajar en equipo. Trabajando en un mismo proyecto, gestionando tareas y manteniendo la parte de usuario del proyecto.",
+    description: {
+      es: "Prácticas profesionales en desarrollo frontend. Trabajo colaborativo en equipo, gestión de tareas y mantenimiento de la interfaz de usuario del proyecto.",
+      en: "Professional internship in frontend development. Collaborative teamwork, task management and maintenance of the project's user interface.",
+    },
+    tags: ["HTML", "CSS", "JavaScript"],
   },
 ]
 ---
 
-<ol class="relative mt-16">
-  {
-    EXPERIENCE.map((experience) => (
-      <li class="">
-        <ExperienceItem {...experience} />
-      </li>
-    ))
-  }
-</ol>
+<div class="mt-10 relative">
+  <!-- Vertical line -->
+  <div class="absolute left-[7px] top-3 bottom-3 w-px bg-apple-gray-200 dark:bg-apple-gray-800"></div>
+
+  <div class="space-y-10">
+    {
+      EXPERIENCE.map((experience, index) => (
+        <div data-reveal data-reveal-delay={index + 1}>
+          <ExperienceItem
+            dateEs={experience.date.es}
+            dateEn={experience.date.en}
+            titleEs={experience.title.es}
+            titleEn={experience.title.en}
+            company={experience.company}
+            descriptionEs={experience.description.es}
+            descriptionEn={experience.description.en}
+            tags={experience.tags}
+            current={experience.current}
+            link={experience.link}
+          />
+        </div>
+      ))
+    }
+  </div>
+</div>

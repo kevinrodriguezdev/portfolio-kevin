@@ -13,39 +13,62 @@ import TitleSection from "@/components/TitleSection.astro"
 ---
 
 <Layout
-  title="Porfolio de Kevin Rodríguez - Desarrollador y Programador Web con +3 años de experiencia"
-  description="Contrata a Kevin Rodríguez para crear tu aplicación web o móvil. Desarrollador Web. Especializado en crear aplicaciones únicas."
+  title="Kevin Rodríguez — Backend Lead & Desarrollador FullStack"
+  description="Backend Lead con +5 años de experiencia. Especializado en Laravel, PHP y arquitectura de software."
 >
-  <main class="px-4">
-    <SectionContainer class="py-16 md:py-36">
-      <Hero>
-      </slot>
-    </Hero>
-    </SectionContainer>
-    <div class="space-y-24">
-    <SectionContainer id="experiencia">
-      <TitleSection>
-        <Briefcase class="size-8" />
-        Experiencia laboral
-      </TitleSection>
-      <Experience />
+  <main>
+    <SectionContainer class="py-32 md:py-48">
+      <Hero />
     </SectionContainer>
 
-    <SectionContainer id="proyectos">
-      <TitleSection>
-        <CodeIcon class="size-7" />
-        Proyectos
-      </TitleSection>
-      <Projects />
-    </SectionContainer>
+    <div class="space-y-32">
+      <SectionContainer id="experiencia">
+        <TitleSection>
+          <Briefcase class="size-7" />
+          <span data-i18n-es="Experiencia" data-i18n-en="Experience" class="i18n-text">Experiencia</span>
+        </TitleSection>
+        <Experience />
+      </SectionContainer>
 
-    <SectionContainer id="sobre-mi">
-      <TitleSection>
-        <ProfileCheck class="size-8" />
-        Sobre mí
-      </TitleSection>
-      <AboutMe />
-    </SectionContainer>
-  </div>
+      <SectionContainer id="proyectos">
+        <TitleSection>
+          <CodeIcon class="size-7" />
+          <span data-i18n-es="Proyectos" data-i18n-en="Projects" class="i18n-text">Proyectos</span>
+        </TitleSection>
+        <Projects />
+      </SectionContainer>
+
+      <SectionContainer id="sobre-mi">
+        <TitleSection>
+          <ProfileCheck class="size-7" />
+          <span data-i18n-es="Sobre mí" data-i18n-en="About me" class="i18n-text">Sobre mí</span>
+        </TitleSection>
+        <AboutMe />
+      </SectionContainer>
+    </div>
   </main>
+
+  <!-- i18n client-side text swap -->
+  <script is:inline>
+    function updateTexts(lang) {
+      document.querySelectorAll('.i18n-text').forEach(function(el) {
+        var es = el.getAttribute('data-i18n-es');
+        var en = el.getAttribute('data-i18n-en');
+        if (es && en) {
+          el.textContent = lang === 'en' ? en : es;
+        }
+      });
+    }
+
+    function initI18n() {
+      var lang = localStorage.getItem('lang') || 'es';
+      updateTexts(lang);
+      document.addEventListener('langchange', function(e) {
+        updateTexts(e.detail.lang);
+      });
+    }
+
+    initI18n();
+    document.addEventListener('astro:after-swap', initI18n);
+  </script>
 </Layout>
