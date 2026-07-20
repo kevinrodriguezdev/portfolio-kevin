@@ -115,8 +115,7 @@ const THEMES = ["Light", "Dark", "System"]
     })
   })
 
-  document.addEventListener('astro:after-swap', () => {
-    updateTheme();
-    window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
+  document.addEventListener('astro:page-load', () => {
+    updateTheme()
   })
 </script>

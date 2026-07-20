@@ -1,16 +1,14 @@
 ---
-import "@fontsource-variable/onest";
-
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
+import "@fontsource-variable/onest"
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
 
 interface Props {
-  title: string;
-  description: string;
+  title: string
+  description: string
 }
 
-const { description, title } = Astro.props;
+const { description, title } = Astro.props
 ---
 
 <!doctype html>
@@ -22,25 +20,94 @@ const { description, title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
 
-  <body class="relative text-black dark:text-white">
-    <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-    >
-    </div>
+  <body
+    class="relative text-gray-900 dark:text-white overflow-x-hidden"
+  >
+    <div class="bg-layer-base fixed inset-0 z-[-2] min-h-screen w-full"></div>
+    <div class="bg-layer-violet fixed inset-0 z-[-1] min-h-screen w-full pointer-events-none"></div>
+    <div class="bg-layer-amber fixed inset-0 z-[-1] min-h-screen w-full pointer-events-none"></div>
 
-
-    </div>
     <Header />
+
+    <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+      <div
+        class="parallax-blob absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full blur-3xl blob-blue"
+        style="animation: float 20s ease-in-out infinite;"
+      ></div>
+      <div
+        class="parallax-blob absolute top-1/3 -right-32 w-[400px] h-[400px] rounded-full blur-3xl blob-violet"
+        style="animation: float 25s ease-in-out infinite reverse;"
+      ></div>
+      <div
+        class="parallax-blob absolute bottom-1/4 left-1/3 w-[350px] h-[350px] rounded-full blur-3xl blob-amber"
+        style="animation: float 22s ease-in-out infinite 5s;"
+      ></div>
+    </div>
+
     <slot />
+
     <Footer />
+
     <style is:global>
       :root {
         color-scheme: light dark;
+        --accent: 59 130 246;
+        --accent-2: 139 92 246;
+        --warm: 245 158 11;
+      }
+
+      .bg-layer-base {
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59, 130, 246, 0.12), transparent),
+          white;
+      }
+
+      .bg-layer-violet {
+        background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(139, 92, 246, 0.06), transparent);
+      }
+
+      .bg-layer-amber {
+        background: radial-gradient(ellipse 40% 60% at 80% 50%, rgba(245, 158, 11, 0.05), transparent);
+      }
+
+      .dark .bg-layer-base {
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59, 130, 246, 0.08), transparent),
+          rgb(3, 7, 18);
+      }
+
+      .dark .bg-layer-violet {
+        background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(139, 92, 246, 0.04), transparent);
+      }
+
+      .dark .bg-layer-amber {
+        background: radial-gradient(ellipse 40% 60% at 80% 50%, rgba(245, 158, 11, 0.03), transparent);
+      }
+
+      .blob-blue {
+        background: rgba(96, 165, 250, 0.15);
+      }
+
+      .blob-violet {
+        background: rgba(167, 139, 250, 0.12);
+      }
+
+      .blob-amber {
+        background: rgba(251, 191, 36, 0.1);
+      }
+
+      .dark .blob-blue {
+        background: rgba(59, 130, 246, 0.08);
+      }
+
+      .dark .blob-violet {
+        background: rgba(139, 92, 246, 0.06);
+      }
+
+      .dark .blob-amber {
+        background: rgba(245, 158, 11, 0.06);
       }
 
       html {
@@ -49,11 +116,12 @@ const { description, title } = Astro.props;
       }
 
       body {
-        color: rgba(17, 17, 17, 0.9);
         display: flex;
         flex-direction: column;
         min-height: 100vh;
         overscroll-behavior: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -64,54 +132,73 @@ const { description, title } = Astro.props;
 
       @media (prefers-color-scheme: dark) {
         body {
-          color: rgba(255, 255, 255, 0.9);
+          color: rgba(255, 255, 255, 0.92);
         }
       }
 
-      #header-nav {
-        animation: blur linear both 0.5s;
-        animation-timeline: scroll();
-        animation-range: 0 500px;
+      ::-webkit-scrollbar {
+        width: 6px;
       }
 
-      @keyframes blur {
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(156, 163, 175, 0.4);
+        border-radius: 9999px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(156, 163, 175, 0.6);
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0) scale(1);
+        }
+        25% {
+          transform: translateY(-30px) scale(1.05);
+        }
+        50% {
+          transform: translateY(-15px) scale(0.95);
+        }
+        75% {
+          transform: translateY(-40px) scale(1.08);
+        }
+      }
+
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
         to {
-          backdrop-filter: blur(20px);
-          border-width: 1px;
-          border-color: rgba(0, 0, 0);
-          padding: 0.25rem 0.75rem;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          background-color: rgb(229, 229, 229);
-          border-radius: 9999px;
+          opacity: 1;
+          transform: translateY(0);
         }
       }
 
-      @media (prefers-color-scheme: dark) {
-        @keyframes blur {
-          from {
-            border: 0px;
-          }
-          to {
-            box-shadow:
-              0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-              0px 0px 0 1px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            border-width: 1px;
-            border-color: rgba(0, 0, 0);
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 9999px;
-          }
-        }
+      .reveal {
+        transform: translateY(24px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.visible {
+        transform: translateY(0);
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .dark .glass {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.06);
       }
     </style>
   </body>

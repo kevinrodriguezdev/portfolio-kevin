@@ -10,42 +10,50 @@ import Projects from "@/components/Projects.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import Hero from "@/components/Hero.astro"
 import TitleSection from "@/components/TitleSection.astro"
+import Skills from "@/components/Skills.astro"
 ---
 
 <Layout
-  title="Porfolio de Kevin Rodríguez - Desarrollador y Programador Web con +3 años de experiencia"
-  description="Contrata a Kevin Rodríguez para crear tu aplicación web o móvil. Desarrollador Web. Especializado en crear aplicaciones únicas."
+  title="Kevin Rodriguez - Desarrollador FullStack | Portfolio"
+  description="Contrata a Kevin Rodriguez para crear tu aplicacion web. Full Stack Developer con +3 anos de experiencia. Especializado en Laravel, Node.js, Vue y Docker."
 >
   <main class="px-4">
     <SectionContainer class="py-16 md:py-36">
-      <Hero>
-      </slot>
-    </Hero>
-    </SectionContainer>
-    <div class="space-y-24">
-    <SectionContainer id="experiencia">
-      <TitleSection>
-        <Briefcase class="size-8" />
-        Experiencia laboral
-      </TitleSection>
-      <Experience />
+      <Hero />
     </SectionContainer>
 
-    <SectionContainer id="proyectos">
-      <TitleSection>
-        <CodeIcon class="size-7" />
-        Proyectos
-      </TitleSection>
-      <Projects />
-    </SectionContainer>
+    <div class="space-y-32 pb-8">
+      <SectionContainer id="experiencia">
+        <TitleSection>
+          <Briefcase class="size-7 text-blue-500" />
+          Experiencia laboral
+        </TitleSection>
+        <Experience />
+      </SectionContainer>
 
-    <SectionContainer id="sobre-mi">
-      <TitleSection>
-        <ProfileCheck class="size-8" />
-        Sobre mí
-      </TitleSection>
-      <AboutMe />
-    </SectionContainer>
-  </div>
+      <SectionContainer id="proyectos">
+        <TitleSection>
+          <CodeIcon class="size-7 text-violet-500" />
+          Proyectos
+        </TitleSection>
+        <Projects />
+      </SectionContainer>
+
+      <SectionContainer id="skills">
+        <TitleSection>
+          <CodeIcon class="size-7 text-amber-500" />
+          Skills & Tecnologias
+        </TitleSection>
+        <Skills />
+      </SectionContainer>
+
+      <SectionContainer id="sobre-mi">
+        <TitleSection>
+          <ProfileCheck class="size-7 text-blue-500" />
+          Sobre mi
+        </TitleSection>
+        <AboutMe />
+      </SectionContainer>
+    </div>
   </main>
 </Layout>

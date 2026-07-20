@@ -1,54 +1,79 @@
 ---
-const personalImageAlt = "Kevin Rodríguez"
 import Badge from "@/components/Badge.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
-import ProfileCheckIcon from "@/components/icons/Briefcase.astro"
+import BriefcaseIcon from "@/components/icons/Briefcase.astro"
+
+const personalImageAlt = "Kevin Rodriguez"
 ---
 
-<div class="max-w-xl">
-  <div class="flex gap-4 mb-4">
+<div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+  <div class="relative flex-shrink-0">
+    <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 via-violet-500/15 to-amber-400/20 blur-2xl scale-125"></div>
     <img
-      class="rounded-full shadow-lg size-16"
+      class="relative rounded-full shadow-2xl size-28 lg:size-36 object-cover ring-2 ring-white/20 dark:ring-white/10"
       src="/kevindev.jpg"
       alt={personalImageAlt}
+      style="animation: fade-in-up 0.8s cubic-bezier(0.16,1,0.3,1) both;"
     />
+  </div>
+
+  <div class="max-w-xl text-center lg:text-left">
     <a
       href="https://linkedin.com/in/kevinrodriguezdev"
       target="_blank"
       rel="noopener"
-      class="flex items-center transition md:justify-center md:hover:scale-105"
+      class="inline-flex transition hover:scale-105 mb-5"
+      style="animation: fade-in-up 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s both;"
     >
-      <Badge>Trabajando actualmente</Badge>
+      <Badge>Disponible para trabajar</Badge>
     </a>
-  </div>
-  <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
-  >
-    Kevin Rodríguez
-  </h1>
-  <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
-  >
-    +3 años de experiencia. <strong
-      >Desarrollador FullStack</strong
-    > de Valencia, España 🇪🇸. Especializado en el desarrollo de aplicaciones web
-    únicas.
-  </p>
-  <nav class="flex flex-wrap gap-4 mt-8">
-    <SocialPill href="mailto:kevinrodriguezdev@gmail.com">
-      <MailIcon class="size-4" />
-      Contáctame
-    </SocialPill>
-    <SocialPill href="https://linkedin.com/in/kevinrodriguezdev">
-      <LinkedInIcon class="size-4" />
-      LinkedIn
-    </SocialPill>
 
-    <SocialPill href="https://kevin-minimalist-portfolio.vercel.app">
-      <ProfileCheckIcon class="size-4" />
-      CV
-    </SocialPill>
-  </nav>
+    <h1
+      class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
+      style="animation: fade-in-up 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both;"
+    >
+      <span class="text-gray-900 dark:text-white">Kevin </span>
+      <span
+        class="bg-gradient-to-r from-blue-600 via-indigo-500 to-violet-500 bg-clip-text text-transparent"
+      >
+        Rodriguez
+      </span>
+    </h1>
+
+    <p
+      class="mt-5 text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed text-balance"
+      style="animation: fade-in-up 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s both;"
+    >
+      +3 anos de experiencia.
+      <strong class="text-blue-600 dark:text-blue-400 font-semibold"
+        >Full Stack Developer</strong
+      > de Valencia, Espana. Laravel · Node.js · Vue · Supabase · Docker
+    </p>
+
+    <nav
+      class="flex flex-wrap gap-3 mt-7 justify-center lg:justify-start"
+      style="animation: fade-in-up 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s both;"
+    >
+      <SocialPill href="mailto:kevinrodriguezdev@gmail.com">
+        <MailIcon class="size-4" />
+        Contactame
+      </SocialPill>
+      <SocialPill href="https://linkedin.com/in/kevinrodriguezdev">
+        <LinkedInIcon class="size-4" />
+        LinkedIn
+      </SocialPill>
+      <SocialPill href="https://kevin-minimalist-portfolio.vercel.app">
+        <BriefcaseIcon class="size-4" />
+        CV
+      </SocialPill>
+    </nav>
+  </div>
 </div>
+
+<style>
+  .text-balance {
+    text-wrap: balance;
+  }
+</style>

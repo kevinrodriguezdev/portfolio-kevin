@@ -1,18 +1,20 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
+
 const EXPERIENCE = [
   {
     date: "Enero 2025 - Actualidad",
     title: "Desarrollador FullStack",
     company: "Degestec Games",
-    description: "Mantenimiento y creación de nuevas herramientas para falicitar las tareas de gestión interna. Utilizando tecnologías como Laravel, Vue y  MySQL."
+    description:
+      "Desarrollo y mantenimiento de herramientas internas que agilizan la gestion diaria del equipo, cubriendo el ciclo completo: APIs REST con Laravel y Node.js, frontend con Vue 3 (Composition API) y base de datos MySQL. Introduje Docker para estandarizar los entornos de desarrollo, eliminando las diferencias de configuracion entre maquinas y agilizando la puesta en marcha de nuevos proyectos.",
   },
   {
     date: "Mayo 2021 - Septiembre 2024",
     title: "Desarrollador FullStack",
     company: "Sodecia Automotive",
     description:
-      "Mantenimiento y creación de nuevas aplicaciones en la web interna. Donde desarrollé soluciones para los usuarios de planta y digitalicé procesos. Utilizando las últimas tecnologías",
+      "Como unico desarrollador del equipo, desarrolle y mantuve las aplicaciones de la intranet corporativa con PHP, JavaScript y MySQL. Digitalice procesos que se gestionaban en papel (partes de incidencias, control de calidad, trazabilidad e inventario) convirtiendolos en aplicaciones web a medida que optimizaron el flujo de trabajo de los usuarios de planta. Asumi el ciclo completo de cada solucion: desde la toma de requisitos con los usuarios hasta el desarrollo y el mantenimiento.",
     link: "https://www.linkedin.com/in/kevinrodriguezdev/",
   },
   {
@@ -20,17 +22,22 @@ const EXPERIENCE = [
     title: "Desarrollador Frontend",
     company: "La Cruz Azul",
     description:
-      "Practicas en las que aprendí a trabajar en equipo. Trabajando en un mismo proyecto, gestionando tareas y manteniendo la parte de usuario del proyecto.",
+      "Practicas formativas donde adquiri experiencia trabajando en equipo con metodologias agiles. Colabore en el desarrollo del frontend de un proyecto web, gestionando tareas mediante Jira y manteniendo la interfaz de usuario con HTML, CSS y JavaScript vanilla.",
   },
 ]
 ---
 
-<ol class="relative mt-16">
-  {
-    EXPERIENCE.map((experience) => (
-      <li class="">
-        <ExperienceItem {...experience} />
-      </li>
-    ))
-  }
-</ol>
+<div class="relative">
+  <div
+    class="absolute left-[1.85rem] md:left-[2.85rem] top-0 bottom-0 w-px bg-gradient-to-b from-blue-200 dark:from-blue-800 via-gray-200 dark:via-gray-800 to-transparent"
+  ></div>
+  <ol class="relative space-y-2">
+    {
+      EXPERIENCE.map((experience) => (
+        <li>
+          <ExperienceItem {...experience} />
+        </li>
+      ))
+    }
+  </ol>
+</div>

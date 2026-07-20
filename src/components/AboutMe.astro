@@ -1,28 +1,38 @@
 ---
- const personalImageAlt = "Kevin Rodríguez"
+const personalImageAlt = "Kevin Rodriguez"
 ---
 
-<article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
-  >
-    <p>
-      ¡Hola! Soy Kevin un <strong>Desarrollador FullStack</strong> apasionado por crear soluciones digitales innovadoras.
-    </p>
+<article class="reveal">
+  <div class="glass rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+    <div class="flex-shrink-0 relative">
+      <div
+        class="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-violet-500/20 blur-xl scale-110"
+      ></div>
+      <img
+        width="200"
+        height="200"
+        src="/kevindev.jpg"
+        alt={personalImageAlt}
+        class="relative w-48 h-48 sm:w-56 sm:h-56 object-cover rounded-2xl shadow-lg ring-1 ring-black/5 dark:ring-white/10"
+        style="object-position: 50% 40%"
+      />
+    </div>
 
-    <p>
-      Cuento con <strong>+3 años de experiencia</strong> diseñando y desarrollando aplicaciones web dinámicas y escalables,
-       desde la interfaz de usuario hasta la lógica de servidor. 
-       Trabajo con tecnologías como <strong>PHP, JavaScript, HTML y CSS</strong>, actualmente estoy ampliando mis habilidades aprendiendo 
-       <strong>React, Tailwind y Astro</strong>.
-      Busco oportunidades en proyectos que me desafíen a seguir aprendiendo y mejorando mis habilidades, mientras aporto valor con mi conocimiento y creatividad.
-    </p>
+    <div class="flex-1 text-left space-y-4">
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Hola! Soy Kevin, <strong class="text-blue-600 dark:text-blue-400 font-semibold">Full Stack Developer</strong> con <strong class="text-blue-600 dark:text-blue-400 font-semibold">mas de 3 anos de experiencia</strong> construyendo aplicaciones web de principio a fin:
+        interfaces con <strong class="text-blue-600 dark:text-blue-400 font-semibold">Vue</strong>, APIs con <strong class="text-blue-600 dark:text-blue-400 font-semibold">Laravel y Node.js</strong>,
+        datos sobre <strong class="text-blue-600 dark:text-blue-400 font-semibold">PostgreSQL, MySQL y Supabase</strong>, y entornos reproducibles con <strong class="text-blue-600 dark:text-blue-400 font-semibold">Docker</strong>.
+      </p>
 
-<p>Fuera del trabajo, disfruto correr y sobretodo el mundo de los videojuegos. 👾 </p>
+      <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+        Vengo del sector de la automocion, donde digitalice procesos de planta como unico desarrollador del equipo, tomando las decisiones tecnicas con total autonomia.
+        Me especializo en convertir procesos manuales en herramientas digitales que los usuarios realmente utilizan.
+      </p>
 
-    
+      <p class="text-gray-500 dark:text-gray-400 text-sm">
+        Fuera del trabajo, disfruto correr y el mundo de los videojuegos.
+      </p>
+    </div>
   </div>
-
-  <img width="200" height="200" src="/kevindev.jpg" alt={personalImageAlt} class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20 " style="object-position: 50% 50%">
-
 </article>

@@ -1,0 +1,61 @@
+---
+const categories = [
+  {
+    name: "Frontend",
+    skills: [
+      { name: "HTML & CSS", color: "bg-[#E34F26]/15 text-[#E34F26] dark:bg-[#E34F26]/20 dark:text-[#f0795a]" },
+      { name: "JavaScript", color: "bg-[#F7DF1E]/15 text-[#b8a200] dark:bg-[#F7DF1E]/20 dark:text-[#f5e56c]" },
+      { name: "Tailwind CSS", color: "bg-[#06B6D4]/15 text-[#06B6D4] dark:bg-[#06B6D4]/20 dark:text-[#22d3ee]" },
+      { name: "Vue", color: "bg-[#42b883]/15 text-[#42b883] dark:bg-[#42b883]/20 dark:text-[#66d9a0]" },
+      { name: "React", color: "bg-[#61DAFB]/15 text-[#0ea5c4] dark:bg-[#61DAFB]/20 dark:text-[#7be4ff]" },
+      { name: "Astro", color: "bg-[#FF5D01]/15 text-[#FF5D01] dark:bg-[#FF5D01]/20 dark:text-[#ff8c4a]" },
+    ],
+  },
+  {
+    name: "Backend",
+    skills: [
+      { name: "PHP", color: "bg-[#777BB4]/15 text-[#777BB4] dark:bg-[#777BB4]/20 dark:text-[#a7aaf0]" },
+      { name: "Laravel", color: "bg-[#FF2D20]/15 text-[#FF2D20] dark:bg-[#FF2D20]/20 dark:text-[#ff6b6b]" },
+      { name: "Node.js", color: "bg-[#339933]/15 text-[#339933] dark:bg-[#339933]/20 dark:text-[#5cb85c]" },
+    ],
+  },
+  {
+    name: "Base de datos",
+    skills: [
+      { name: "MySQL", color: "bg-[#4479A1]/15 text-[#4479A1] dark:bg-[#4479A1]/20 dark:text-[#6baed6]" },
+      { name: "PostgreSQL", color: "bg-[#336791]/15 text-[#336791] dark:bg-[#336791]/20 dark:text-[#5a9fd4]" },
+      { name: "Supabase", color: "bg-[#3ECF8E]/15 text-[#3ECF8E] dark:bg-[#3ECF8E]/20 dark:text-[#5eeaad]" },
+    ],
+  },
+  {
+    name: "DevOps / Herramientas",
+    skills: [
+      { name: "Docker", color: "bg-[#2496ED]/15 text-[#2496ED] dark:bg-[#2496ED]/20 dark:text-[#5eb3f6]" },
+      { name: "Git", color: "bg-[#F05032]/15 text-[#F05032] dark:bg-[#F05032]/20 dark:text-[#f57962]" },
+      { name: "GitHub", color: "bg-gray-500/15 text-gray-700 dark:bg-gray-500/20 dark:text-gray-300" },
+    ],
+  },
+]
+---
+
+<div class="space-y-8">
+  {
+    categories.map((category) => (
+      <div>
+        <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-3">
+          {category.name}
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {category.skills.map((skill, i) => (
+            <div
+              class={`reveal glass rounded-xl px-4 py-3 text-sm font-medium text-center transition-all duration-300 hover:scale-105 hover:shadow-lg ${skill.color}`}
+              style={`transition-delay: ${i * 50}ms`}
+            >
+              {skill.name}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</div>

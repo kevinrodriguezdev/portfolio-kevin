@@ -12,45 +12,60 @@ interface Props {
 const { title, company, description, link, date } = Astro.props
 ---
 
-<div
-  class="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4]"
->
-  <div class="relative pb-12 md:col-span-2">
-    <div class="sticky top-0">
-      <span class="text-yellow-400 -left-[42px] absolute rounded-full text-5xl"
-        >&bull;</span
-      >
+<div class="reveal">
+  <div
+    class="relative ml-8 md:ml-14 pb-10 group"
+  >
+    <span
+      class="absolute -left-[2.35rem] md:-left-[3.65rem] top-1 flex h-5 w-5 items-center justify-center"
+    >
+      <span
+        class="h-3 w-3 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 ring-4 ring-blue-100 dark:ring-blue-950"
+      ></span>
+    </span>
 
-      <h3 class="text-xl font-bold text-yellow-400">{title}</h3>
-      <h4 class="font-semibold text-xl text-gray-600 dark:text-white">{company}</h4>
-      <time class="p-0 m-0 text-sm text-gray-600/80 dark:text-white/80">{date}</time>
+    <div
+      class="glass rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]"
+    >
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">
+          {title}
+        </h3>
+        <time class="text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1">
+          {date}
+        </time>
+      </div>
+      <h4 class="text-base font-semibold text-gray-800 dark:text-gray-200 mb-3">
+        {company}
+      </h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+        {description}
+      </p>
+      {
+        link && (
+          <div class="mt-3">
+            <LinkInline href={link}>
+              Saber mas
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4 inline ml-0.5"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M9 6l6 6l-6 6" />
+              </svg>
+            </LinkInline>
+          </div>
+        )
+      }
     </div>
   </div>
-  <div class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3">
-    {description}
-    {
-      link && (
-        <LinkInline href={link}>
-          Saber más{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 icon icon-tabler icon-tabler-chevron-right"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <>
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M9 6l6 6l-6 6" />
-            </>
-          </svg>
-        </LinkInline>
-      )
-    }
-  </div>
+
 </div>

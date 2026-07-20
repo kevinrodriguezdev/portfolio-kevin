@@ -1,6 +1,5 @@
 ---
 import GitHub from "./icons/GitHub.astro"
-import NextJS from "./icons/NextJS.astro"
 import Tailwind from "./icons/Tailwind.astro"
 import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
@@ -9,63 +8,140 @@ import Astroicon from "./icons/Astroicon.astro"
 const TAGS = {
   ASTRO: {
     name: "Astro",
-    class: "bg-white text-black",
+    class: "bg-[#FF5D01]/15 text-[#FF5D01] dark:text-[#ff8c4a]",
     icon: Astroicon,
   },
   TAILWIND: {
     name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
+    class: "bg-[#06B6D4]/15 text-[#06B6D4] dark:text-[#22d3ee]",
     icon: Tailwind,
   },
+  LARAVEL: {
+    name: "Laravel",
+    class: "bg-[#FF2D20]/15 text-[#FF2D20] dark:text-[#ff6b6b]",
+    icon: null,
+  },
+  VUE: {
+    name: "Vue",
+    class: "bg-[#42b883]/15 text-[#42b883] dark:text-[#66d9a0]",
+    icon: null,
+  },
+  MYSQL: {
+    name: "MySQL",
+    class: "bg-[#4479A1]/15 text-[#4479A1] dark:text-[#6baed6]",
+    icon: null,
+  },
+  PHP: {
+    name: "PHP",
+    class: "bg-[#777BB4]/15 text-[#777BB4] dark:text-[#a7aaf0]",
+    icon: null,
+  },
+  POSTGRES: {
+    name: "PostgreSQL",
+    class: "bg-[#336791]/15 text-[#336791] dark:text-[#5a9fd4]",
+    icon: null,
+  },
+  NODE: {
+    name: "Node.js",
+    class: "bg-[#339933]/15 text-[#339933] dark:text-[#66cc66]",
+    icon: null,
+  },
+  SUPABASE: {
+    name: "Supabase",
+    class: "bg-[#3ECF8E]/15 text-[#3ECF8E] dark:text-[#5eeaad]",
+    icon: null,
+  },
 }
+
 const PROJECTS = [
+  {
+    title: "Pastillas Dean",
+    description:
+      "Sistema de recordatorio de medicacion para mi perro Dean usando NFC y notificaciones push. Al acercar el telefono a una etiqueta NFC, se registra la toma de la pastilla y se notifica al resto de la familia para evitar dosis duplicadas. Disenado para que mis padres no tengan que lidiar con otra aplicacion.",
+    link: "",
+    github: "",
+    image: "/projects/pastillas-dean.png",
+    tags: [TAGS.VUE, TAGS.NODE, TAGS.SUPABASE],
+  },
   {
     title: "Dossier - Landing Page",
     description:
-      "Landing page para la venta de un dosier para la prueba de acceso de grados medios en España. Creado desde cero con Astro y Tailwind CSS.",
+      "Landing page para la venta de un dosier para la prueba de acceso de grados medios en Espana. Creada desde cero con Astro y Tailwind CSS. Diseno moderno y responsive optimizado para conversion.",
     link: "https://pruebadeacceso.vercel.app/",
     github: "https://github.com/kevinrodriguezdev/grado-medio",
     image: "/projects/pruebadeacceso.png",
     tags: [TAGS.ASTRO, TAGS.TAILWIND],
-  }
+  },
+  {
+    title: "GestFlow - Sistema de Gestion",
+    description:
+      "Plataforma interna de gestion empresarial con panel de administracion, control de inventario y seguimiento de tareas. Backend con Laravel y MySQL, frontend dinamico con Vue 3 + Tailwind.",
+    link: "https://gestflow-demo.vercel.app/",
+    github: "https://github.com/kevinrodriguezdev/gestflow",
+    image: "/projects/pruebadeacceso.png",
+    tags: [TAGS.LARAVEL, TAGS.VUE, TAGS.MYSQL, TAGS.TAILWIND],
+  },
+  {
+    title: "DevPulse - Dashboard Analytics",
+    description:
+      "Dashboard de metricas para equipos de desarrollo. Visualizacion de commits, pull requests y tiempo de despliegue. Construido con PHP vanilla, PostgreSQL y Tailwind CSS con graficos interactivos.",
+    link: "https://devpulse-demo.vercel.app/",
+    github: "https://github.com/kevinrodriguezdev/devpulse",
+    image: "/projects/pruebadeacceso.png",
+    tags: [TAGS.PHP, TAGS.POSTGRES, TAGS.TAILWIND],
+  },
 ]
 ---
 
-<div class="flex flex-col gap-y-16">
+<div class="flex flex-col gap-y-20">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
-    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-  <div class="w-full md:w-1/2">
-    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Proyecto 1" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
-    </div>
-  </div>
+    PROJECTS.map(({ image, title, description, tags, link, github }, i) => (
+    <article
+      class={`reveal flex flex-col space-y-6 md:flex-row md:space-x-10 md:space-y-0 ${i % 2 === 1 ? 'md:flex-row-reverse md:space-x-reverse' : ''}`}
+    >
+      <div class="w-full md:w-1/2">
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener"
+          class="group/img block relative overflow-hidden rounded-2xl"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 z-10 rounded-2xl"
+          ></div>
+          <img
+            alt={title}
+            class="object-cover object-top w-full h-56 sm:h-64 transition duration-500 group-hover/img:scale-105 rounded-2xl shadow-lg"
+            loading="lazy"
+            src={image}
+          />
+        </a>
+      </div>
 
-  <div class="w-full md:w-1/2 md:max-w-lg">
-    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-      {title}
-    </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
+      <div class="w-full md:w-1/2 flex flex-col justify-center">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
+          {title}
+        </h3>
+        <ul class="flex flex-wrap gap-2 mt-3 mb-4">
           {tags.map((tag) => (
             <li>
               <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                class={`inline-flex items-center gap-x-1.5 rounded-full text-xs font-medium py-1.5 px-3 ${tag.class}`}
               >
-                <tag.icon class="size-4" />
+                {tag.icon && <tag.icon class="size-3.5" />}
                 {tag.name}
               </span>
             </li>
           ))}
         </ul>
-
-      <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          {description}
+        </p>
+        <footer class="flex items-center gap-3 mt-5">
           {github && (
             <LinkButton href={github}>
-              <GitHub class="size-6" />
+              <GitHub class="size-5" />
               Code
-              
             </LinkButton>
           )}
           {link && (
@@ -75,12 +151,8 @@ const PROJECTS = [
             </LinkButton>
           )}
         </footer>
-    </div>
-  </div>
-</article>
+      </div>
+    </article>
     ))
   }
 </div>
-
-
-
