@@ -10,28 +10,32 @@ const THEMES = ["Light", "Dark", "System"]
   <button
     transition:persist
     id="theme-toggle-btn"
-    class="appearance-none border-none flex hover:scale-125 transition"
+    class="appearance-none border-none flex hover:scale-110 transition text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-800 dark:hover:text-white"
   >
     <span class="sr-only">Elige el tema</span>
-    <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
+    <SunIcon id="light" class="theme-toggle-icon size-4 transition-all" />
     <MoonIcon
       id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all"
+      class="theme-toggle-icon absolute size-4 transition-all"
     />
     <SystemIcon
       id="system"
-      class="theme-toggle-icon absolute size-5 transition-all"
+      class="theme-toggle-icon absolute size-4 transition-all"
     />
   </button>
   <div
     transition:persist
     id="themes-menu"
-    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-xl
+           border border-apple-gray-200/50 bg-white/90
+           dark:bg-apple-gray-900/90 dark:border-apple-gray-700/50
+           shadow-lg backdrop-blur-xl"
   >
     <ul>
       {
         THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
+          <li class="themes-menu-option px-3 py-1.5 cursor-default rounded-lg text-apple-gray-600 dark:text-apple-gray-300
+                     hover:bg-apple-gray-100 dark:hover:bg-apple-gray-800">
             {theme}
           </li>
         ))
@@ -115,7 +119,8 @@ const THEMES = ["Light", "Dark", "System"]
     })
   })
 
-  document.addEventListener('astro:page-load', () => {
-    updateTheme()
+  document.addEventListener('astro:after-swap', () => {
+    updateTheme();
+    window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
   })
 </script>

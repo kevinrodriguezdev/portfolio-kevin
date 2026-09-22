@@ -1,71 +1,105 @@
 ---
-import LinkInline from "./LinkInline.astro"
-
 interface Props {
-  title: string
+  titleEs: string
+  titleEn: string
   company: string
-  description: string
+  descriptionEs: string
+  descriptionEn: string
+  tags?: string[]
+  current?: boolean
   link?: string
-  date: string
+  dateEs: string
+  dateEn: string
 }
 
-const { title, company, description, link, date } = Astro.props
+const { titleEs, titleEn, company, descriptionEs, descriptionEn, tags, current, link, dateEs, dateEn } =
+  Astro.props
 ---
 
-<div class="reveal">
-  <div
-    class="relative ml-8 md:ml-14 pb-10 group"
-  >
-    <span
-      class="absolute -left-[2.35rem] md:-left-[3.65rem] top-1 flex h-5 w-5 items-center justify-center"
-    >
-      <span
-        class="h-3 w-3 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 ring-4 ring-blue-100 dark:ring-blue-950"
-      ></span>
-    </span>
-
-    <div
-      class="glass rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:shadow-lg hover:scale-[1.01]"
-    >
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-        <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400">
-          {title}
-        </h3>
-        <time class="text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1">
-          {date}
-        </time>
-      </div>
-      <h4 class="text-base font-semibold text-gray-800 dark:text-gray-200 mb-3">
-        {company}
-      </h4>
-      <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-        {description}
-      </p>
+<div class="relative pl-10">
+  <!-- Dot on the timeline -->
+  <div class="absolute left-0 top-7">
+    <span class="relative flex h-3.5 w-3.5">
       {
-        link && (
-          <div class="mt-3">
-            <LinkInline href={link}>
-              Saber mas
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4 inline ml-0.5"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M9 6l6 6l-6 6" />
-              </svg>
-            </LinkInline>
-          </div>
+        current && (
+          <span class="animate-ping motion-reduce:animate-none absolute inline-flex h-full w-full rounded-full bg-apple-blue/40 dark:bg-apple-blue-dark/40" />
         )
       }
-    </div>
+      <span
+        class:list={[
+          "relative inline-flex h-3.5 w-3.5 rounded-full ring-[3px] ring-apple-gray-50 dark:ring-apple-gray-950",
+          current
+            ? "bg-apple-blue dark:bg-apple-blue-dark"
+            : "bg-apple-gray-300 dark:bg-apple-gray-700",
+        ]}></span>
+    </span>
   </div>
 
+  <!-- Card -->
+  <div
+    class="rounded-3xl p-6 ring-1 backdrop-blur-xl transition-all duration-500
+           bg-white/50 ring-apple-gray-200/70
+           dark:bg-apple-gray-900/40 dark:ring-apple-gray-800
+           hover:ring-apple-gray-300 dark:hover:ring-apple-gray-700
+           hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/30"
+  >
+    <div class="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+      <h3 class="text-base font-semibold tracking-tight text-apple-gray-900 dark:text-white">
+        <span data-i18n-es={titleEs} data-i18n-en={titleEn} class="i18n-text">{titleEs}</span>
+      </h3>
+      <span class="text-apple-gray-300 dark:text-apple-gray-700">·</span>
+      <span class="text-sm font-medium text-apple-gray-500 dark:text-apple-gray-400">{company}</span>
+    </div>
+
+    <time
+      class="mt-1 block text-[11px] font-semibold uppercase tracking-widest text-apple-gray-400 dark:text-apple-gray-500"
+    >
+      <span data-i18n-es={dateEs} data-i18n-en={dateEn} class="i18n-text">{dateEs}</span>
+    </time>
+
+    <p class="mt-3.5 max-w-2xl text-sm leading-relaxed text-pretty text-apple-gray-500 dark:text-apple-gray-400">
+      <span data-i18n-es={descriptionEs} data-i18n-en={descriptionEn} class="i18n-text"
+        >{descriptionEs}</span
+      >
+    </p>
+
+    {
+      tags && tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          {tags.map((tag) => (
+            <span class="rounded-md bg-apple-gray-100 px-2 py-0.5 text-[11px] font-medium text-apple-gray-500 dark:bg-apple-gray-800/60 dark:text-apple-gray-400">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-apple-blue hover:underline dark:text-apple-blue-dark"
+        >
+          <span data-i18n-es="Saber más" data-i18n-en="Learn more" class="i18n-text">
+            Saber más
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3 w-3"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 6l6 6l-6 6" />
+          </svg>
+        </a>
+      )
+    }
+  </div>
 </div>

@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets"
+import AvailabilityChip from "@/components/AvailabilityChip.astro"
+import portrait from "@/assets/kevin.webp"
+import avatarSquare from "@/assets/kevin-avatar.webp"
+
+interface Props {
+  class?: string
+}
+
+const { class: className = "" } = Astro.props
+---
+
+<!--
+  Two shapes, one component: a small round profile picture on phones, where the
+  portrait sits beside the name and must stay secondary to it, and the full 4:5
+  squircle from sm up. Each breakpoint gets its own crop — squeezing the 4:5
+  portrait into a circle would leave the face off-centre.
+-->
+<div class={`relative ${className}`}>
+  <!-- Soft, static halo. Follows the frame's shape at each breakpoint. -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 -z-10 rounded-full blur-2xl
+           bg-apple-blue/25 dark:bg-apple-blue/40
+           sm:rounded-[3rem] sm:blur-3xl"
+  >
+  </div>
+
+  <figure
+    class="group relative overflow-hidden rounded-full sm:rounded-[2rem]
+           bg-apple-gray-100 dark:bg-apple-gray-800
+           ring-1 ring-black/[0.08] dark:ring-white/10
+           shadow-[0_6px_16px_-6px_rgba(0,0,0,0.25)]
+           sm:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)]
+           dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)]"
+  >
+    <Image
+      src={avatarSquare}
+      alt="Kevin Rodríguez"
+      widths={[80, 160, 240]}
+      sizes="80px"
+      loading="eager"
+      class="w-full aspect-square object-cover sm:hidden"
+    />
+
+    <Image
+      src={portrait}
+      alt="Kevin Rodríguez"
+      widths={[300, 450, 600, 900]}
+      sizes="(min-width: 1024px) 380px, 320px"
+      loading="eager"
+      class="hidden w-full aspect-[4/5] object-cover object-top transition-transform duration-[900ms] ease-out sm:block group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+    />
+
+    <!-- Bottom scrim, only where the chip overlaps the photo -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-0 bottom-0 hidden h-24 bg-gradient-to-t from-black/25 to-transparent sm:block"
+    >
+    </div>
+  </figure>
+
+  <AvailabilityChip
+    class="absolute -bottom-3.5 left-1/2 hidden -translate-x-1/2 sm:inline-flex sm:gap-2 sm:px-3.5 sm:py-2 sm:text-xs"
+  />
+</div>

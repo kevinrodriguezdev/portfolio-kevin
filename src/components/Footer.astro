@@ -2,22 +2,25 @@
 const currentYear = new Date().getFullYear()
 ---
 
-<footer
-  class="mt-24 mb-8 w-full mx-auto container lg:max-w-4xl md:max-w-2xl flex justify-center"
->
-  <div
-    class="glass rounded-2xl w-full max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-6 py-4"
-  >
-    <span class="text-sm text-gray-600 dark:text-gray-400">
-      &copy; {currentYear} Kevin Rodriguez
-    </span>
-    <ul class="flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
-      <li>
-        <a href="/#sobre-mi" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sobre mi</a>
-      </li>
-      <li>
-        <a href="mailto:kevinrodriguezdev@gmail.com" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contacto</a>
-      </li>
-    </ul>
+<footer class="w-full mx-auto container lg:max-w-5xl md:max-w-2xl mt-24 mb-8 px-4">
+  <div class="border-t border-apple-gray-200/50 dark:border-apple-gray-800 pt-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <span class="text-sm text-apple-gray-400 dark:text-apple-gray-500">
+        © {currentYear} Kevin Rodríguez.
+        <span data-i18n-es="Todos los derechos reservados." data-i18n-en="All rights reserved." class="i18n-text">Todos los derechos reservados.</span>
+      </span>
+      <ul class="flex items-center gap-6 text-sm text-apple-gray-400 dark:text-apple-gray-500">
+        <li>
+          <a href="/#sobre-mi" class="hover:text-apple-gray-600 dark:hover:text-apple-gray-300 transition-colors">
+            <span data-i18n-es="Sobre mí" data-i18n-en="About" class="i18n-text">Sobre mí</span>
+          </a>
+        </li>
+        <li>
+          <a id="contacto" href="mailto:kevinrodriguezdev@gmail.com" class="hover:text-apple-gray-600 dark:hover:text-apple-gray-300 transition-colors">
+            <span data-i18n-es="Contacto" data-i18n-en="Contact" class="i18n-text">Contacto</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </footer>

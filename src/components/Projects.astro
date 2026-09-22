@@ -1,158 +1,135 @@
 ---
+import { Image } from "astro:assets"
+
 import GitHub from "./icons/GitHub.astro"
-import Tailwind from "./icons/Tailwind.astro"
 import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
 import Astroicon from "./icons/Astroicon.astro"
+import Tailwind from "./icons/Tailwind.astro"
+import Vue from "./icons/Vue.astro"
+import Node from "./icons/Node.astro"
+import Supabase from "./icons/Supabase.astro"
+import Nfc from "./icons/Nfc.astro"
+
+import pastillasDean from "@/assets/projects/pastillas-dean.webp"
+import pruebaDeAcceso from "@/assets/projects/pruebadeacceso.webp"
 
 const TAGS = {
-  ASTRO: {
-    name: "Astro",
-    class: "bg-[#FF5D01]/15 text-[#FF5D01] dark:text-[#ff8c4a]",
-    icon: Astroicon,
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#06B6D4]/15 text-[#06B6D4] dark:text-[#22d3ee]",
-    icon: Tailwind,
-  },
-  LARAVEL: {
-    name: "Laravel",
-    class: "bg-[#FF2D20]/15 text-[#FF2D20] dark:text-[#ff6b6b]",
-    icon: null,
-  },
-  VUE: {
-    name: "Vue",
-    class: "bg-[#42b883]/15 text-[#42b883] dark:text-[#66d9a0]",
-    icon: null,
-  },
-  MYSQL: {
-    name: "MySQL",
-    class: "bg-[#4479A1]/15 text-[#4479A1] dark:text-[#6baed6]",
-    icon: null,
-  },
-  PHP: {
-    name: "PHP",
-    class: "bg-[#777BB4]/15 text-[#777BB4] dark:text-[#a7aaf0]",
-    icon: null,
-  },
-  POSTGRES: {
-    name: "PostgreSQL",
-    class: "bg-[#336791]/15 text-[#336791] dark:text-[#5a9fd4]",
-    icon: null,
-  },
-  NODE: {
-    name: "Node.js",
-    class: "bg-[#339933]/15 text-[#339933] dark:text-[#66cc66]",
-    icon: null,
-  },
-  SUPABASE: {
-    name: "Supabase",
-    class: "bg-[#3ECF8E]/15 text-[#3ECF8E] dark:text-[#5eeaad]",
-    icon: null,
-  },
+  ASTRO: { name: "Astro", class: "bg-[#FF5D01]/10 text-[#e05400] dark:text-[#ff8c4a]", icon: Astroicon },
+  TAILWIND: { name: "Tailwind CSS", class: "bg-[#06B6D4]/10 text-[#0891b2] dark:text-[#22d3ee]", icon: Tailwind },
+  VUE: { name: "Vue", class: "bg-[#42b883]/10 text-[#2f9c6d] dark:text-[#66d9a0]", icon: Vue },
+  NODE: { name: "Node.js", class: "bg-[#339933]/10 text-[#2d7d2d] dark:text-[#66cc66]", icon: Node },
+  SUPABASE: { name: "Supabase", class: "bg-[#3ECF8E]/10 text-[#2aa370] dark:text-[#5eeaad]", icon: Supabase },
+  NFC: { name: "NFC", class: "bg-apple-gray-400/10 text-apple-gray-600 dark:text-apple-gray-300", icon: Nfc },
 }
 
 const PROJECTS = [
   {
-    title: "Pastillas Dean",
-    description:
-      "Sistema de recordatorio de medicacion para mi perro Dean usando NFC y notificaciones push. Al acercar el telefono a una etiqueta NFC, se registra la toma de la pastilla y se notifica al resto de la familia para evitar dosis duplicadas. Disenado para que mis padres no tengan que lidiar con otra aplicacion.",
+    title: { es: "Pastillas Dean", en: "Dean's Pills" },
+    description: {
+      es: "Sistema de recordatorio de medicación para mi perro Dean con NFC y notificaciones push. Al acercar el teléfono a una etiqueta NFC se registra la toma y se avisa al resto de la familia, evitando dosis duplicadas. Diseñado para que mis padres no tengan que pelearse con otra app.",
+      en: "Medication reminder system for my dog Dean using NFC and push notifications. Tapping an NFC tag logs the dose and notifies the rest of the family, preventing double doses. Designed so my parents never have to fight with another app.",
+    },
     link: "",
     github: "",
-    image: "/projects/pastillas-dean.png",
-    tags: [TAGS.VUE, TAGS.NODE, TAGS.SUPABASE],
+    image: pastillasDean,
+    tags: [TAGS.VUE, TAGS.NODE, TAGS.SUPABASE, TAGS.NFC],
+    personal: true,
   },
   {
-    title: "Dossier - Landing Page",
-    description:
-      "Landing page para la venta de un dosier para la prueba de acceso de grados medios en Espana. Creada desde cero con Astro y Tailwind CSS. Diseno moderno y responsive optimizado para conversion.",
+    title: { es: "Dossier — Landing Page", en: "Dossier — Landing Page" },
+    description: {
+      es: "Landing page para la venta de un dosier para la prueba de acceso de grados medios en España. Diseñada y desarrollada desde cero con Astro y Tailwind CSS.",
+      en: "Landing page for selling a dossier for the vocational training entrance exam in Spain. Designed and developed from scratch with Astro and Tailwind CSS.",
+    },
     link: "https://pruebadeacceso.vercel.app/",
     github: "https://github.com/kevinrodriguezdev/grado-medio",
-    image: "/projects/pruebadeacceso.png",
+    image: pruebaDeAcceso,
     tags: [TAGS.ASTRO, TAGS.TAILWIND],
-  },
-  {
-    title: "GestFlow - Sistema de Gestion",
-    description:
-      "Plataforma interna de gestion empresarial con panel de administracion, control de inventario y seguimiento de tareas. Backend con Laravel y MySQL, frontend dinamico con Vue 3 + Tailwind.",
-    link: "https://gestflow-demo.vercel.app/",
-    github: "https://github.com/kevinrodriguezdev/gestflow",
-    image: "/projects/pruebadeacceso.png",
-    tags: [TAGS.LARAVEL, TAGS.VUE, TAGS.MYSQL, TAGS.TAILWIND],
-  },
-  {
-    title: "DevPulse - Dashboard Analytics",
-    description:
-      "Dashboard de metricas para equipos de desarrollo. Visualizacion de commits, pull requests y tiempo de despliegue. Construido con PHP vanilla, PostgreSQL y Tailwind CSS con graficos interactivos.",
-    link: "https://devpulse-demo.vercel.app/",
-    github: "https://github.com/kevinrodriguezdev/devpulse",
-    image: "/projects/pruebadeacceso.png",
-    tags: [TAGS.PHP, TAGS.POSTGRES, TAGS.TAILWIND],
   },
 ]
 ---
 
-<div class="flex flex-col gap-y-20">
+<div class="flex flex-col gap-6">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }, i) => (
-    <article
-      class={`reveal flex flex-col space-y-6 md:flex-row md:space-x-10 md:space-y-0 ${i % 2 === 1 ? 'md:flex-row-reverse md:space-x-reverse' : ''}`}
-    >
-      <div class="w-full md:w-1/2">
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener"
-          class="group/img block relative overflow-hidden rounded-2xl"
-        >
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 z-10 rounded-2xl"
-          ></div>
-          <img
-            alt={title}
-            class="object-cover object-top w-full h-56 sm:h-64 transition duration-500 group-hover/img:scale-105 rounded-2xl shadow-lg"
-            loading="lazy"
+    PROJECTS.map(({ image, title, description, tags, link, github, personal }, index) => (
+      <article
+        data-reveal
+        data-reveal-delay={index + 1}
+        class="group grid gap-6 p-4 sm:p-5 rounded-3xl md:grid-cols-[minmax(0,4fr)_minmax(0,6fr)] md:gap-7
+               bg-white/60 dark:bg-apple-gray-900/40 backdrop-blur-xl
+               ring-1 ring-apple-gray-200/70 dark:ring-apple-gray-800
+               transition-all duration-500
+               hover:ring-apple-gray-300 dark:hover:ring-apple-gray-700
+               hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/30"
+      >
+        {/* Compact preview — sits in its own column so it never dominates the card */}
+        <div class="relative overflow-hidden rounded-2xl bg-apple-gray-100 dark:bg-apple-gray-800 ring-1 ring-black/5 dark:ring-white/5">
+          <Image
             src={image}
+            alt={title.es}
+            widths={[320, 480, 640]}
+            sizes="(min-width: 768px) 340px, 92vw"
+            loading="lazy"
+            class="w-full aspect-[16/10] object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
           />
-        </a>
-      </div>
+        </div>
 
-      <div class="w-full md:w-1/2 flex flex-col justify-center">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
-          {title}
-        </h3>
-        <ul class="flex flex-wrap gap-2 mt-3 mb-4">
-          {tags.map((tag) => (
-            <li>
-              <span
-                class={`inline-flex items-center gap-x-1.5 rounded-full text-xs font-medium py-1.5 px-3 ${tag.class}`}
-              >
-                {tag.icon && <tag.icon class="size-3.5" />}
-                {tag.name}
+        <div class="flex flex-col justify-center">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <h3 class="text-lg sm:text-xl font-semibold tracking-tight text-apple-gray-900 dark:text-white">
+              <span data-i18n-es={title.es} data-i18n-en={title.en} class="i18n-text">
+                {title.es}
               </span>
-            </li>
-          ))}
-        </ul>
-        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-          {description}
-        </p>
-        <footer class="flex items-center gap-3 mt-5">
-          {github && (
-            <LinkButton href={github}>
-              <GitHub class="size-5" />
-              Code
-            </LinkButton>
+            </h3>
+            {personal && (
+              <span class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded-full bg-apple-gray-100 text-apple-gray-500 dark:bg-apple-gray-800 dark:text-apple-gray-400">
+                <span data-i18n-es="Proyecto personal" data-i18n-en="Side project" class="i18n-text">
+                  Proyecto personal
+                </span>
+              </span>
+            )}
+          </div>
+
+          <p class="mt-2.5 text-sm text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-pretty">
+            <span data-i18n-es={description.es} data-i18n-en={description.en} class="i18n-text">
+              {description.es}
+            </span>
+          </p>
+
+          <ul class="flex flex-wrap gap-1.5 mt-4">
+            {tags.map((tag) => (
+              <li>
+                <span class={`flex items-center gap-1.5 rounded-full text-xs font-medium py-1 px-2.5 ${tag.class}`}>
+                  <tag.icon class="size-3.5" />
+                  {tag.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {(github || link) && (
+            <footer class="flex items-center gap-5 mt-5">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-4" />
+                  <span data-i18n-es="Código" data-i18n-en="Code" class="i18n-text">
+                    Código
+                  </span>
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  <span data-i18n-es="Vista previa" data-i18n-en="Preview" class="i18n-text">
+                    Vista previa
+                  </span>
+                </LinkButton>
+              )}
+            </footer>
           )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
-          )}
-        </footer>
-      </div>
-    </article>
+        </div>
+      </article>
     ))
   }
 </div>

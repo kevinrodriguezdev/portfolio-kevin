@@ -1,0 +1,39 @@
+---
+---
+
+<button
+  id="lang-toggle-btn"
+  class="flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full transition-colors
+         text-apple-gray-500 hover:text-apple-gray-800 dark:text-apple-gray-400 dark:hover:text-white
+         bg-apple-gray-100 dark:bg-apple-gray-700 hover:bg-apple-gray-200 dark:hover:bg-apple-gray-600"
+  aria-label="Cambiar idioma"
+>
+  <span id="lang-label">ES</span>
+</button>
+
+<script is:inline>
+  function initLangToggle() {
+    const btn = document.getElementById('lang-toggle-btn');
+    const label = document.getElementById('lang-label');
+    if (!btn || !label) return;
+
+    const stored = localStorage.getItem('lang') || 'es';
+    label.textContent = stored.toUpperCase();
+    document.getElementById('html-root')?.setAttribute('lang', stored);
+
+    // Dispatch initial language event
+    document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: stored } }));
+
+    btn.addEventListener('click', () => {
+      const current = localStorage.getItem('lang') || 'es';
+      const next = current === 'es' ? 'en' : 'es';
+      localStorage.setItem('lang', next);
+      label.textContent = next.toUpperCase();
+      document.getElementById('html-root')?.setAttribute('lang', next);
+      document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: next } }));
+    });
+  }
+
+  initLangToggle();
+  document.addEventListener('astro:after-swap', initLangToggle);
+</script>

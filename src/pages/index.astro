@@ -10,50 +10,65 @@ import Projects from "@/components/Projects.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import Hero from "@/components/Hero.astro"
 import TitleSection from "@/components/TitleSection.astro"
-import Skills from "@/components/Skills.astro"
 ---
 
 <Layout
-  title="Kevin Rodriguez - Desarrollador FullStack | Portfolio"
-  description="Contrata a Kevin Rodriguez para crear tu aplicacion web. Full Stack Developer con +3 anos de experiencia. Especializado en Laravel, Node.js, Vue y Docker."
+  title="Kevin Rodríguez — Backend Lead & Desarrollador FullStack"
+  description="Backend Lead con +5 años de experiencia. Especializado en Laravel, PHP y arquitectura de software."
 >
-  <main class="px-4">
-    <SectionContainer class="py-16 md:py-36">
+  <main>
+    <SectionContainer class="pt-32 pb-16 md:pt-44 md:pb-24">
       <Hero />
     </SectionContainer>
 
-    <div class="space-y-32 pb-8">
+    <div class="space-y-28 md:space-y-36">
       <SectionContainer id="experiencia">
         <TitleSection>
-          <Briefcase class="size-7 text-blue-500" />
-          Experiencia laboral
+          <Briefcase class="size-7" />
+          <span data-i18n-es="Experiencia" data-i18n-en="Experience" class="i18n-text">Experiencia</span>
         </TitleSection>
         <Experience />
       </SectionContainer>
 
       <SectionContainer id="proyectos">
         <TitleSection>
-          <CodeIcon class="size-7 text-violet-500" />
-          Proyectos
+          <CodeIcon class="size-7" />
+          <span data-i18n-es="Proyectos" data-i18n-en="Projects" class="i18n-text">Proyectos</span>
         </TitleSection>
         <Projects />
       </SectionContainer>
 
-      <SectionContainer id="skills">
-        <TitleSection>
-          <CodeIcon class="size-7 text-amber-500" />
-          Skills & Tecnologias
-        </TitleSection>
-        <Skills />
-      </SectionContainer>
-
       <SectionContainer id="sobre-mi">
         <TitleSection>
-          <ProfileCheck class="size-7 text-blue-500" />
-          Sobre mi
+          <ProfileCheck class="size-7" />
+          <span data-i18n-es="Sobre mí" data-i18n-en="About me" class="i18n-text">Sobre mí</span>
         </TitleSection>
         <AboutMe />
       </SectionContainer>
     </div>
   </main>
+
+  <!-- i18n client-side text swap -->
+  <script is:inline>
+    function updateTexts(lang) {
+      document.querySelectorAll('.i18n-text').forEach(function(el) {
+        var es = el.getAttribute('data-i18n-es');
+        var en = el.getAttribute('data-i18n-en');
+        if (es && en) {
+          el.textContent = lang === 'en' ? en : es;
+        }
+      });
+    }
+
+    function initI18n() {
+      var lang = localStorage.getItem('lang') || 'es';
+      updateTexts(lang);
+      document.addEventListener('langchange', function(e) {
+        updateTexts(e.detail.lang);
+      });
+    }
+
+    initI18n();
+    document.addEventListener('astro:after-swap', initI18n);
+  </script>
 </Layout>
