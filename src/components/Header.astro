@@ -2,59 +2,70 @@
 import ThemeToggle from "./ThemeToggle.astro"
 import LanguageToggle from "./LanguageToggle.astro"
 
+import Briefcase from "./icons/Briefcase.astro"
+import CodeIcon from "./icons/Code.astro"
+import ProfileCheck from "./icons/ProfileCheck.astro"
+import MailIcon from "./icons/Mail.astro"
+
 const navItems = [
   {
     titleEs: "Experiencia",
     titleEn: "Experience",
     label: "experiencia",
     url: "/#experiencia",
+    Icon: Briefcase,
   },
   {
     titleEs: "Proyectos",
     titleEn: "Projects",
     label: "proyectos",
     url: "/#proyectos",
+    Icon: CodeIcon,
   },
   {
     titleEs: "Sobre mí",
     titleEn: "About",
     label: "sobre-mi",
     url: "/#sobre-mi",
+    Icon: ProfileCheck,
   },
   {
     titleEs: "Contacto",
     titleEn: "Contact",
     label: "contacto",
     url: "mailto:kevinrodriguezdev@gmail.com",
+    Icon: MailIcon,
   },
 ]
 ---
 
-<header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-4"
->
+<header class="fixed top-0 z-20 mt-4 flex w-full items-center justify-center px-4">
   <nav
-    class="flex px-4 py-2 text-sm font-medium rounded-full justify-center items-center gap-1
+    class="flex max-w-full items-center justify-center gap-1 rounded-full px-2 py-2 text-sm font-medium
+           sm:px-4
            bg-white/70 dark:bg-apple-gray-900/70 backdrop-blur-xl
            border border-apple-gray-200/50 dark:border-apple-gray-700/50
            shadow-sm"
   >
     {
-      navItems.map((link) => (
+      navItems.map((item) => (
         <a
-          class="nav-link relative block px-3 py-1.5 rounded-full transition-colors
+          class="nav-link relative flex items-center rounded-full px-2.5 py-1.5 transition-colors sm:px-3
                  text-apple-gray-500 hover:text-apple-gray-800
                  dark:text-apple-gray-400 dark:hover:text-white"
-          aria-label={link.label}
-          href={link.url}
-          data-title-es={link.titleEs}
-          data-title-en={link.titleEn}
+          aria-label={item.label}
+          title={item.titleEs}
+          href={item.url}
+          data-title-es={item.titleEs}
+          data-title-en={item.titleEn}
         >
-          {link.titleEs}
+          {/* Below sm the labels do not fit in the pill, so the icon carries the meaning. */}
+          <item.Icon class="size-4 sm:hidden" />
+          <span class="nav-label hidden sm:inline">{item.titleEs}</span>
         </a>
       ))
     }
-    <div class="w-px h-4 bg-apple-gray-200 dark:bg-apple-gray-700 mx-1"></div>
+    <div class="mx-1 h-4 w-px bg-apple-gray-200 dark:bg-apple-gray-700"></div>
     <ThemeToggle />
     <LanguageToggle />
   </nav>
@@ -100,22 +111,28 @@ const navItems = [
     }
   })
 
-  // Language swap for nav items
+  // Language swap. Writes into the label span only — writing to the link itself
+  // would wipe out the icon that the mobile pill relies on.
   function updateNavLang(lang: string) {
-    document.querySelectorAll('a.nav-link').forEach((a) => {
-      const el = a as HTMLElement;
-      const key = lang === 'en' ? 'data-title-en' : 'data-title-es';
-      el.textContent = el.getAttribute(key) || el.textContent;
-    });
+    document.querySelectorAll("a.nav-link").forEach((a) => {
+      const el = a as HTMLElement
+      const key = lang === "en" ? "data-title-en" : "data-title-es"
+      const title = el.getAttribute(key)
+      if (!title) return
+
+      const label = el.querySelector(".nav-label")
+      if (label) label.textContent = title
+      el.setAttribute("title", title)
+    })
   }
 
-  document.addEventListener('langchange', ((e: CustomEvent) => {
-    updateNavLang(e.detail.lang);
-  }) as EventListener);
+  document.addEventListener("langchange", ((e: CustomEvent) => {
+    updateNavLang(e.detail.lang)
+  }) as EventListener)
 
   // Set initial language
-  updateNavLang(localStorage.getItem('lang') || 'es');
-  document.addEventListener('astro:after-swap', () => {
-    updateNavLang(localStorage.getItem('lang') || 'es');
-  });
+  updateNavLang(localStorage.getItem("lang") || "es")
+  document.addEventListener("astro:after-swap", () => {
+    updateNavLang(localStorage.getItem("lang") || "es")
+  })
 </script>

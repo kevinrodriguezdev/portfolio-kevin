@@ -1,15 +1,27 @@
-<a
-  {...Astro.props}
-  target="_blank"
-  rel="noopener noreferrer"
-  role="link"
-  class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-all
-         text-apple-gray-600 bg-white border border-apple-gray-200
-         hover:bg-apple-gray-50 hover:border-apple-gray-300 hover:shadow-sm
-         dark:text-apple-gray-300 dark:bg-apple-gray-800/50 dark:border-apple-gray-700
-         dark:hover:bg-apple-gray-700/50 dark:hover:border-apple-gray-600
-         focus:outline-none focus-visible:ring-2 focus-visible:ring-apple-blue/50 focus-visible:ring-offset-2
-         dark:focus-visible:ring-offset-apple-gray-950"
->
+---
+interface Props {
+  href: string
+  primary?: boolean
+  [key: string]: any
+}
+
+const { primary = false, ...rest } = Astro.props
+
+const base =
+  "inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full " +
+  "transition-all duration-300 hover:-translate-y-0.5 " +
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-apple-blue/50 focus-visible:ring-offset-2 " +
+  "dark:focus-visible:ring-offset-apple-gray-950"
+
+const variant = primary
+  ? "text-white bg-apple-gray-900 hover:bg-apple-gray-800 shadow-lg shadow-black/10 " +
+    "dark:text-apple-gray-900 dark:bg-white dark:hover:bg-apple-gray-100"
+  : "text-apple-gray-600 bg-white/70 ring-1 ring-apple-gray-200 backdrop-blur-xl " +
+    "hover:bg-white hover:ring-apple-gray-300 hover:shadow-md " +
+    "dark:text-apple-gray-300 dark:bg-apple-gray-800/50 dark:ring-apple-gray-700 " +
+    "dark:hover:bg-apple-gray-700/50 dark:hover:ring-apple-gray-600"
+---
+
+<a {...rest} target="_blank" rel="noopener noreferrer" role="link" class={`${base} ${variant}`}>
   <slot />
 </a>

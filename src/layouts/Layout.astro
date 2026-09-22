@@ -25,7 +25,13 @@ const { description, title } = Astro.props;
     <ViewTransitions />
   </head>
 
-  <body class="relative text-apple-gray-800 dark:text-white bg-white dark:bg-apple-gray-950 antialiased">
+  <body
+    class="relative text-apple-gray-800 dark:text-white bg-apple-gray-50 dark:bg-apple-gray-950 antialiased"
+  >
+    <!-- Ambient background: layered radial gradients. Vector, so it scales to any
+         viewport without pixelation, and carries no noise texture. -->
+    <div aria-hidden="true" class="ambient pointer-events-none fixed inset-0 -z-10"></div>
+
     <Header />
     <slot />
     <Footer />
@@ -67,6 +73,22 @@ const { description, title } = Astro.props;
         overscroll-behavior: none;
       }
 
+      /* Ambient field: three soft colour pools painted as radial gradients.
+         Purely vector, so there is nothing to pixelate at any zoom or size. */
+      .ambient {
+        background:
+          radial-gradient(1100px 760px at 88% -8%, rgba(0, 113, 227, 0.12), transparent 60%),
+          radial-gradient(900px 640px at 2% 42%, rgba(139, 92, 246, 0.09), transparent 60%),
+          radial-gradient(820px 580px at 78% 104%, rgba(34, 211, 238, 0.08), transparent 60%);
+      }
+
+      :root.dark .ambient {
+        background:
+          radial-gradient(1100px 760px at 88% -8%, rgba(41, 151, 255, 0.14), transparent 60%),
+          radial-gradient(900px 640px at 2% 42%, rgba(139, 92, 246, 0.1), transparent 60%),
+          radial-gradient(820px 580px at 78% 104%, rgba(34, 211, 238, 0.07), transparent 60%);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -74,6 +96,10 @@ const { description, title } = Astro.props;
         [data-reveal] {
           opacity: 1 !important;
           transform: none !important;
+        }
+        .hero-animate {
+          animation: none !important;
+          opacity: 1 !important;
         }
       }
 

@@ -7,8 +7,7 @@ import ReactIcon from "@/components/icons/ReactIcon.astro"
 import TailwindIcon from "@/components/icons/Tailwind.astro"
 import DockerIcon from "@/components/icons/Docker.astro"
 import GitIcon from "@/components/icons/Git.astro"
-
-const personalImageAlt = "Kevin Rodríguez"
+import MailIcon from "@/components/icons/Mail.astro"
 
 const t = {
   es: {
@@ -33,45 +32,124 @@ const stack = [
   { name: "Docker", Icon: DockerIcon },
   { name: "Git", Icon: GitIcon },
 ]
+
+// Shared tile chrome — the bento look lives here so every cell stays consistent.
+const tile =
+  "rounded-3xl p-6 ring-1 backdrop-blur-xl transition-all duration-500 " +
+  "bg-white/60 ring-apple-gray-200/70 " +
+  "dark:bg-apple-gray-900/40 dark:ring-apple-gray-800 " +
+  "hover:ring-apple-gray-300 dark:hover:ring-apple-gray-700"
+
+const tileLabel =
+  "text-[11px] font-semibold uppercase tracking-widest text-apple-gray-400 dark:text-apple-gray-500"
 ---
 
-<article class="space-y-12" data-reveal>
-  <div class="flex flex-col items-center justify-center gap-10 md:flex-row">
-    <div class="[&>p]:mb-4 text-pretty order-2 md:order-1 text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed">
-      <p>
-        <span data-i18n-es={t.es.p1} data-i18n-en={t.en.p1} class="i18n-text">{t.es.p1}</span>
+<div class="grid gap-4 md:grid-cols-4">
+  <!-- Bio -->
+  <article class={`${tile} md:col-span-2 md:row-span-2 flex flex-col justify-center`} data-reveal>
+    <h3 class={tileLabel}>
+      <span data-i18n-es="Perfil" data-i18n-en="Profile" class="i18n-text">Perfil</span>
+    </h3>
+    <div
+      class="mt-4 space-y-4 text-pretty leading-relaxed text-apple-gray-500 dark:text-apple-gray-400"
+    >
+      <p><span data-i18n-es={t.es.p1} data-i18n-en={t.en.p1} class="i18n-text">{t.es.p1}</span></p>
+      <p><span data-i18n-es={t.es.p2} data-i18n-en={t.en.p2} class="i18n-text">{t.es.p2}</span></p>
+      <p><span data-i18n-es={t.es.p3} data-i18n-en={t.en.p3} class="i18n-text">{t.es.p3}</span></p>
+    </div>
+  </article>
+
+  <!-- Specialty -->
+  <article class={`${tile} flex flex-col justify-between gap-6`} data-reveal data-reveal-delay="1">
+    <LaravelIcon class="size-9" />
+    <div>
+      <p class="text-lg font-semibold tracking-tight text-apple-gray-900 dark:text-white">
+        Laravel &amp; PHP
       </p>
-      <p>
-        <span data-i18n-es={t.es.p2} data-i18n-en={t.en.p2} class="i18n-text">{t.es.p2}</span>
-      </p>
-      <p>
-        <span data-i18n-es={t.es.p3} data-i18n-en={t.en.p3} class="i18n-text">{t.es.p3}</span>
+      <p class="mt-1 text-sm text-apple-gray-500 dark:text-apple-gray-400">
+        <span data-i18n-es="Mi terreno natural" data-i18n-en="My home turf" class="i18n-text"
+          >Mi terreno natural</span
+        >
       </p>
     </div>
+  </article>
 
-    <img
-      width="250"
-      height="250"
-      src="/kevindev.jpg"
-      alt={personalImageAlt}
-      class="order-1 object-cover w-48 h-48 md:w-56 md:h-56 md:order-2 rounded-3xl
-             shadow-lg ring-1 ring-apple-gray-200 dark:ring-apple-gray-700"
-      style="object-position: 50% 50%"
-    />
-  </div>
-
-  <!-- Tech stack grid — WWDC style -->
-  <div data-reveal data-reveal-delay="1">
-    <h3 class="text-xs font-semibold uppercase tracking-widest text-apple-gray-400 dark:text-apple-gray-600 mb-4">Stack</h3>
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      {stack.map((tech) => (
-        <div class="flex items-center gap-2.5 px-4 py-3 rounded-xl
-                    bg-apple-gray-50 dark:bg-apple-gray-800/40
-                    border border-apple-gray-200/30 dark:border-apple-gray-800/60">
-          <tech.Icon class="size-5" />
-          <span class="text-sm font-medium text-apple-gray-600 dark:text-apple-gray-400">{tech.name}</span>
-        </div>
-      ))}
+  <!-- Current role -->
+  <article class={`${tile} flex flex-col justify-between gap-6`} data-reveal data-reveal-delay="2">
+    <span class="relative flex h-2.5 w-2.5">
+      <span
+        class="animate-ping motion-reduce:animate-none absolute inline-flex h-full w-full rounded-full bg-apple-blue/50"
+      ></span>
+      <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-apple-blue dark:bg-apple-blue-dark"
+      ></span>
+    </span>
+    <div>
+      <h3 class={tileLabel}>
+        <span data-i18n-es="Ahora mismo" data-i18n-en="Right now" class="i18n-text">Ahora mismo</span>
+      </h3>
+      <p class="mt-2 text-lg font-semibold tracking-tight text-apple-gray-900 dark:text-white">
+        Backend Lead
+      </p>
+      <p class="mt-0.5 text-sm text-apple-gray-500 dark:text-apple-gray-400">Degestec Games</p>
     </div>
-  </div>
-</article>
+  </article>
+
+  <!-- Stack -->
+  <article class={`${tile} md:col-span-2`} data-reveal data-reveal-delay="3">
+    <h3 class={tileLabel}>Stack</h3>
+    <div class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      {
+        stack.map((tech) => (
+          <div
+            class="flex flex-col items-center gap-2 rounded-2xl px-2 py-3.5
+                   bg-apple-gray-50 dark:bg-apple-gray-800/50
+                   transition-transform duration-300 hover:-translate-y-0.5"
+            title={tech.name}
+          >
+            <tech.Icon class="size-6" />
+            <span class="text-xs font-medium text-apple-gray-600 dark:text-apple-gray-400">
+              {tech.name}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </article>
+
+  <!-- Contact CTA -->
+  <article
+    class="md:col-span-4 rounded-3xl p-8 ring-1 transition-all duration-500
+           bg-gradient-to-br from-apple-gray-900 to-apple-gray-700 ring-black/10
+           dark:from-apple-gray-800 dark:to-apple-gray-900 dark:ring-white/10
+           flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center"
+    data-reveal
+    data-reveal-delay="4"
+  >
+    <div>
+      <p class="text-xl font-semibold tracking-tight text-white">
+        <span
+          data-i18n-es="¿Construimos algo juntos?"
+          data-i18n-en="Shall we build something together?"
+          class="i18n-text">¿Construimos algo juntos?</span
+        >
+      </p>
+      <p class="mt-1.5 text-sm text-apple-gray-300">
+        <span
+          data-i18n-es="Abierto a proyectos y conversaciones interesantes."
+          data-i18n-en="Open to projects and interesting conversations."
+          class="i18n-text">Abierto a proyectos y conversaciones interesantes.</span
+        >
+      </p>
+    </div>
+    <a
+      href="mailto:kevinrodriguezdev@gmail.com"
+      class="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium
+             text-apple-gray-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-apple-gray-100
+             focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2
+             focus-visible:ring-offset-apple-gray-900"
+    >
+      <MailIcon class="size-4" />
+      <span data-i18n-es="Escríbeme" data-i18n-en="Get in touch" class="i18n-text">Escríbeme</span>
+    </a>
+  </article>
+</div>

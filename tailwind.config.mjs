@@ -26,6 +26,11 @@ export default {
 			fontFamily: {
 				sans: ['"Inter Variable"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
 			},
+			fontSize: {
+				// Fluid display sizes for the poster hero
+				'display': ['clamp(2rem, 9vw, 5.5rem)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
+				'display-sm': ['clamp(1.25rem, 4.5vw, 2.5rem)', { lineHeight: '1.1', letterSpacing: '-0.03em' }],
+			},
 			animation: {
 				'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
 				'fade-in': 'fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',

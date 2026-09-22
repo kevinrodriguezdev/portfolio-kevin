@@ -1,35 +1,82 @@
 ---
-import Badge from "@/components/Badge.astro"
+import Avatar from "@/components/Avatar.astro"
+import AvailabilityChip from "@/components/AvailabilityChip.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
 import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
 import GitHubIcon from "@/components/icons/GitHub.astro"
 ---
 
-<div class="max-w-3xl">
-  <div class="hero-animate hero-animate-delay-1 mb-6">
-    <Badge>
-      <span data-i18n-es="Backend Lead en Degestec" data-i18n-en="Backend Lead at Degestec" class="i18n-text">Backend Lead en Degestec</span>
-    </Badge>
+<!--
+  One grid, three arrangements, driven by explicit row/column placement so the
+  avatar stays a single instance:
+    phones  — two columns: small round avatar beside the name, rest full width
+    sm      — one column: portrait on top, text below
+    lg      — two columns: text left, portrait right spanning the full block
+-->
+<div
+  class="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-6
+         sm:grid-cols-1 sm:gap-y-10
+         lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-x-20"
+>
+  <!-- Portrait -->
+  <div
+    class="hero-animate hero-animate-delay-1 col-start-1 row-start-1 justify-self-start
+           sm:justify-self-center
+           lg:col-start-2 lg:row-span-4 lg:justify-self-end lg:self-center"
+  >
+    <Avatar class="w-20 sm:w-72 lg:w-[22rem]" />
   </div>
 
-  <h1 class="hero-animate hero-animate-delay-2 tracking-tight text-apple-gray-800 dark:text-white leading-[1.05]">
-    <span class="block text-5xl md:text-7xl font-bold">Kevin Rodríguez</span>
-    <span class="block mt-2 text-2xl md:text-3xl font-semibold bg-gradient-to-r from-apple-blue to-cyan-400 dark:from-apple-blue-dark dark:to-cyan-300 bg-clip-text text-transparent">
-      Backend Lead · Laravel & PHP
-    </span>
-  </h1>
+  <!-- Name -->
+  <div
+    class="hero-animate hero-animate-delay-2 col-start-2 row-start-1
+           sm:col-start-1 sm:row-start-2
+           lg:row-start-1"
+  >
+    <h1 class="text-display font-semibold text-apple-gray-900 dark:text-white">
+      <span class="block">Kevin</span>
+      <span class="block">Rodríguez</span>
+    </h1>
 
-  <p class="hero-animate hero-animate-delay-3 mt-8 text-lg md:text-xl text-apple-gray-500 dark:text-apple-gray-400 max-w-2xl leading-relaxed">
+    {/* On phones the avatar is too small to carry the chip, so it sits here instead. */}
+    <AvailabilityChip class="mt-2.5 sm:hidden" />
+  </div>
+
+  <!-- Role -->
+  <p
+    class="hero-animate hero-animate-delay-2 col-span-2 col-start-1 row-start-2
+           sm:col-span-1 sm:row-start-3 lg:row-start-2
+           text-display-sm font-semibold bg-gradient-to-r
+           from-apple-blue via-cyan-500 to-violet-500
+           dark:from-apple-blue-dark dark:via-cyan-300 dark:to-violet-400
+           bg-clip-text text-transparent"
+  >
+    Backend Lead · Laravel &amp; PHP
+  </p>
+
+  <!-- Description -->
+  <p
+    class="hero-animate hero-animate-delay-3 col-span-2 col-start-1 row-start-3
+           sm:col-span-1 sm:row-start-4 lg:row-start-3
+           max-w-xl text-base sm:text-lg md:text-xl
+           text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-pretty"
+  >
     <span
       data-i18n-es="+5 años creando software que escala. Arquitectura limpia, equipos que funcionan, productos que importan."
       data-i18n-en="5+ years building software that scales. Clean architecture, teams that work, products that matter."
       class="i18n-text"
-    >+5 años creando software que escala. Arquitectura limpia, equipos que funcionan, productos que importan.</span>
+      >+5 años creando software que escala. Arquitectura limpia, equipos que funcionan, productos que importan.</span
+    >
   </p>
 
-  <nav class="hero-animate hero-animate-delay-4 flex flex-wrap gap-3 mt-10">
-    <SocialPill href="mailto:kevinrodriguezdev@gmail.com">
+  <!-- Links -->
+  <nav
+    class="hero-animate hero-animate-delay-4 col-span-2 col-start-1 row-start-4
+           sm:col-span-1 sm:row-start-5 lg:row-start-4
+           flex flex-wrap gap-3"
+  >
+    <SocialPill href="mailto:kevinrodriguezdev@gmail.com" primary>
       <MailIcon class="size-4" />
       <span data-i18n-es="Contacto" data-i18n-en="Contact" class="i18n-text">Contacto</span>
     </SocialPill>

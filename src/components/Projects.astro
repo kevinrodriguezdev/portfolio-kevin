@@ -1,68 +1,106 @@
 ---
+import { Image } from "astro:assets"
+
 import GitHub from "./icons/GitHub.astro"
-import Tailwind from "./icons/Tailwind.astro"
 import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
 import Astroicon from "./icons/Astroicon.astro"
+import Tailwind from "./icons/Tailwind.astro"
+import Vue from "./icons/Vue.astro"
+import Node from "./icons/Node.astro"
+import Supabase from "./icons/Supabase.astro"
+import Nfc from "./icons/Nfc.astro"
+
+import pastillasDean from "@/assets/projects/pastillas-dean.webp"
+import pruebaDeAcceso from "@/assets/projects/pruebadeacceso.webp"
 
 const TAGS = {
-  ASTRO: {
-    name: "Astro",
-    class: "bg-apple-gray-100 text-apple-gray-600 dark:bg-apple-gray-800 dark:text-apple-gray-300",
-    icon: Astroicon,
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-apple-gray-100 text-apple-gray-600 dark:bg-apple-gray-800 dark:text-apple-gray-300",
-    icon: Tailwind,
-  },
+  ASTRO: { name: "Astro", class: "bg-[#FF5D01]/10 text-[#e05400] dark:text-[#ff8c4a]", icon: Astroicon },
+  TAILWIND: { name: "Tailwind CSS", class: "bg-[#06B6D4]/10 text-[#0891b2] dark:text-[#22d3ee]", icon: Tailwind },
+  VUE: { name: "Vue", class: "bg-[#42b883]/10 text-[#2f9c6d] dark:text-[#66d9a0]", icon: Vue },
+  NODE: { name: "Node.js", class: "bg-[#339933]/10 text-[#2d7d2d] dark:text-[#66cc66]", icon: Node },
+  SUPABASE: { name: "Supabase", class: "bg-[#3ECF8E]/10 text-[#2aa370] dark:text-[#5eeaad]", icon: Supabase },
+  NFC: { name: "NFC", class: "bg-apple-gray-400/10 text-apple-gray-600 dark:text-apple-gray-300", icon: Nfc },
 }
 
 const PROJECTS = [
   {
+    title: { es: "Pastillas Dean", en: "Dean's Pills" },
+    description: {
+      es: "Sistema de recordatorio de medicación para mi perro Dean con NFC y notificaciones push. Al acercar el teléfono a una etiqueta NFC se registra la toma y se avisa al resto de la familia, evitando dosis duplicadas. Diseñado para que mis padres no tengan que pelearse con otra app.",
+      en: "Medication reminder system for my dog Dean using NFC and push notifications. Tapping an NFC tag logs the dose and notifies the rest of the family, preventing double doses. Designed so my parents never have to fight with another app.",
+    },
+    link: "",
+    github: "",
+    image: pastillasDean,
+    tags: [TAGS.VUE, TAGS.NODE, TAGS.SUPABASE, TAGS.NFC],
+    personal: true,
+  },
+  {
     title: { es: "Dossier — Landing Page", en: "Dossier — Landing Page" },
     description: {
       es: "Landing page para la venta de un dosier para la prueba de acceso de grados medios en España. Diseñada y desarrollada desde cero con Astro y Tailwind CSS.",
-      en: "Landing page for selling a dossier for the middle school access exam in Spain. Designed and developed from scratch with Astro and Tailwind CSS.",
+      en: "Landing page for selling a dossier for the vocational training entrance exam in Spain. Designed and developed from scratch with Astro and Tailwind CSS.",
     },
     link: "https://pruebadeacceso.vercel.app/",
     github: "https://github.com/kevinrodriguezdev/grado-medio",
-    image: "/projects/pruebadeacceso.png",
+    image: pruebaDeAcceso,
     tags: [TAGS.ASTRO, TAGS.TAILWIND],
   },
 ]
 ---
 
-<div class="flex flex-col gap-y-12">
+<div class="flex flex-col gap-6">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }, index) => (
+    PROJECTS.map(({ image, title, description, tags, link, github, personal }, index) => (
       <article
-        data-reveal="scale"
+        data-reveal
         data-reveal-delay={index + 1}
-        class="group overflow-hidden rounded-2xl transition-all duration-300
-               bg-apple-gray-50/50 dark:bg-apple-gray-800/30
-               border border-apple-gray-200/40 dark:border-apple-gray-700/40
-               hover:shadow-lg hover:border-apple-gray-200
-               dark:hover:border-apple-gray-600/60"
+        class="group grid gap-6 p-4 sm:p-5 rounded-3xl md:grid-cols-[minmax(0,4fr)_minmax(0,6fr)] md:gap-7
+               bg-white/60 dark:bg-apple-gray-900/40 backdrop-blur-xl
+               ring-1 ring-apple-gray-200/70 dark:ring-apple-gray-800
+               transition-all duration-500
+               hover:ring-apple-gray-300 dark:hover:ring-apple-gray-700
+               hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/30"
       >
-        <div class="overflow-hidden">
-          <img
-            alt={title.es}
-            class="object-cover object-top w-full aspect-video transition-transform duration-500 group-hover:scale-[1.03]"
-            loading="lazy"
+        {/* Compact preview — sits in its own column so it never dominates the card */}
+        <div class="relative overflow-hidden rounded-2xl bg-apple-gray-100 dark:bg-apple-gray-800 ring-1 ring-black/5 dark:ring-white/5">
+          <Image
             src={image}
+            alt={title.es}
+            widths={[320, 480, 640]}
+            sizes="(min-width: 768px) 340px, 92vw"
+            loading="lazy"
+            class="w-full aspect-[16/10] object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
           />
         </div>
 
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-apple-gray-800 dark:text-white">
-            <span data-i18n-es={title.es} data-i18n-en={title.en} class="i18n-text">{title.es}</span>
-          </h3>
+        <div class="flex flex-col justify-center">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <h3 class="text-lg sm:text-xl font-semibold tracking-tight text-apple-gray-900 dark:text-white">
+              <span data-i18n-es={title.es} data-i18n-en={title.en} class="i18n-text">
+                {title.es}
+              </span>
+            </h3>
+            {personal && (
+              <span class="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded-full bg-apple-gray-100 text-apple-gray-500 dark:bg-apple-gray-800 dark:text-apple-gray-400">
+                <span data-i18n-es="Proyecto personal" data-i18n-en="Side project" class="i18n-text">
+                  Proyecto personal
+                </span>
+              </span>
+            )}
+          </div>
 
-          <ul class="flex flex-wrap gap-2 mt-3">
+          <p class="mt-2.5 text-sm text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-pretty">
+            <span data-i18n-es={description.es} data-i18n-en={description.en} class="i18n-text">
+              {description.es}
+            </span>
+          </p>
+
+          <ul class="flex flex-wrap gap-1.5 mt-4">
             {tags.map((tag) => (
               <li>
-                <span class={`flex items-center gap-1.5 rounded-full text-xs font-medium ${tag.class} py-1 px-2.5`}>
+                <span class={`flex items-center gap-1.5 rounded-full text-xs font-medium py-1 px-2.5 ${tag.class}`}>
                   <tag.icon class="size-3.5" />
                   {tag.name}
                 </span>
@@ -70,29 +108,28 @@ const PROJECTS = [
             ))}
           </ul>
 
-          <p class="mt-3 text-sm text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed">
-            <span data-i18n-es={description.es} data-i18n-en={description.en} class="i18n-text">{description.es}</span>
-          </p>
-
-          <footer class="flex items-center gap-3 mt-4 pt-4 border-t border-apple-gray-200/40 dark:border-apple-gray-700/40">
-            {github && (
-              <LinkButton href={github}>
-                <GitHub class="size-4" />
-                <span data-i18n-es="Código" data-i18n-en="Code" class="i18n-text">Código</span>
-              </LinkButton>
-            )}
-            {link && (
-              <LinkButton href={link}>
-                <Link class="size-4" />
-                <span data-i18n-es="Vista previa" data-i18n-en="Preview" class="i18n-text">Vista previa</span>
-              </LinkButton>
-            )}
-          </footer>
+          {(github || link) && (
+            <footer class="flex items-center gap-5 mt-5">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-4" />
+                  <span data-i18n-es="Código" data-i18n-en="Code" class="i18n-text">
+                    Código
+                  </span>
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  <span data-i18n-es="Vista previa" data-i18n-en="Preview" class="i18n-text">
+                    Vista previa
+                  </span>
+                </LinkButton>
+              )}
+            </footer>
+          )}
         </div>
       </article>
     ))
   }
 </div>
-
-
-
