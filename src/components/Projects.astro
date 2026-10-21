@@ -10,7 +10,11 @@ import Vue from "./icons/Vue.astro"
 import Node from "./icons/Node.astro"
 import Supabase from "./icons/Supabase.astro"
 import Nfc from "./icons/Nfc.astro"
+import Code from "./icons/Code.astro"
 
+import genesisGodsTime from "@/assets/projects/genesis-godstime.webp"
+import panda3d from "@/assets/projects/3dpanda.webp"
+import webrica from "@/assets/projects/webrica.webp"
 import pastillasDean from "@/assets/projects/pastillas-dean.webp"
 import pruebaDeAcceso from "@/assets/projects/pruebadeacceso.webp"
 
@@ -21,9 +25,45 @@ const TAGS = {
   NODE: { name: "Node.js", class: "bg-[#339933]/10 text-[#2d7d2d] dark:text-[#66cc66]", icon: Node },
   SUPABASE: { name: "Supabase", class: "bg-[#3ECF8E]/10 text-[#2aa370] dark:text-[#5eeaad]", icon: Supabase },
   NFC: { name: "NFC", class: "bg-apple-gray-400/10 text-apple-gray-600 dark:text-apple-gray-300", icon: Nfc },
+  VITE: { name: "Vite", class: "bg-[#646CFF]/10 text-[#535bf2] dark:text-[#9499ff]", icon: Code },
+  JAVASCRIPT: { name: "JavaScript", class: "bg-[#F7DF1E]/15 text-[#a18b00] dark:text-[#f7df1e]", icon: Code },
+  TYPESCRIPT: { name: "TypeScript", class: "bg-[#3178C6]/10 text-[#2b6cb0] dark:text-[#6aa6e8]", icon: Code },
 }
 
 const PROJECTS = [
+  {
+    title: { es: "Génesis — God's Time", en: "Génesis — God's Time" },
+    description: {
+      es: "Landing page para una marca de relojes de lujo con un rediseño editorial. Su pieza central es una animación ligada al scroll en la que el reloj se desmonta pieza a pieza (cristal de zafiro, esfera azul sunray, calibre Miyota con anotaciones y tapa trasera grabada) y vuelve a montarse.",
+      en: "Landing page for a luxury watch brand with an editorial redesign. Its centrepiece is a scroll-driven animation in which the watch comes apart piece by piece (sapphire crystal, blue sunray dial, annotated Miyota calibre and engraved caseback) and then reassembles.",
+    },
+    link: "https://godstime-genesis.vercel.app",
+    github: "",
+    image: genesisGodsTime,
+    tags: [TAGS.VITE, TAGS.JAVASCRIPT],
+  },
+  {
+    title: { es: "3DPanda", en: "3DPanda" },
+    description: {
+      es: "Web catálogo para un negocio de impresión 3D: productos filtrables por categoría, ficha de cada producto, página de encargos personalizados y pedidos por WhatsApp. Las imágenes se optimizan automáticamente y el catálogo se amplía sin tocar código.",
+      en: "Catalogue website for a 3D printing business: products filterable by category, a page for each product, custom orders and ordering via WhatsApp. Images are optimised automatically and the catalogue grows without touching code.",
+    },
+    link: "https://3dpanda-pi.vercel.app",
+    github: "",
+    image: panda3d,
+    tags: [TAGS.ASTRO, TAGS.TYPESCRIPT],
+  },
+  {
+    title: { es: "Webrica", en: "Webrica" },
+    description: {
+      es: "Web de mi estudio de desarrollo web, desde el que creo sitios a medida para negocios: landing pages, catálogos de producto y webs de marca con animaciones. Génesis — God's Time y 3DPanda son sus proyectos de referencia.",
+      en: "Website for my web development studio, through which I build custom sites for businesses: landing pages, product catalogues and brand sites with animations. Génesis — God's Time and 3DPanda are its showcase projects.",
+    },
+    link: "https://webrica.vercel.app",
+    github: "",
+    image: webrica,
+    tags: [TAGS.ASTRO],
+  },
   {
     title: { es: "Pastillas Dean", en: "Dean's Pills" },
     description: {
